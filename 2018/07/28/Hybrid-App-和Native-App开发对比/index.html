@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hybrid app 和native app开发对比 | 小日的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="hybridApp 框架" />
+  
+  
+  
+  
+  <meta name="description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
+<meta name="keywords" content="hybridApp 框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hybrid App 和Native App开发对比">
+<meta property="og:url" content="http://yoursite.com/2018/07/28/Hybrid-App-和Native-App开发对比/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png">
+<meta property="og:updated_time" content="2018-07-28T04:07:40.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hybrid App 和Native App开发对比">
+<meta name="twitter:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png">
+  
+    <link rel="alternate" href="/atom.xml" title="小日的博客" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Hybrid-App-和Native-App开发对比" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Hybrid App 和Native App开发对比
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/28/Hybrid-App-和Native-App开发对比/" class="article-date">
+	  <time datetime="2018-07-28T02:40:22.000Z" itemprop="datePublished">2018-07-28</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。</p>
+<p>app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维和升级提供很大的便利。CS则需要下载客户端软件，安装，然后登录使用，升级的话，要么升级链接库，要么重新安装升级包，比较不方便，优势是很多算法在本地运行，对服务器要求不高。</p>
+<p>CS、BS之争是在PC端，那么现在原生和H5之争是在移动端。</p>
+<p>那么评判一个APP用什么技术来开发呢？经过总结，可以有如下判断依据：</p>
+<p>1.如果APP中出现大段文字（如新闻、攻略等），且格式比较丰富（如加粗，字体多样），那么用H5会比较方便。原因是原生开发解析json对字符串格式处理不算很好。</p>
+<p>2.如果讲究APP反应速度（含页面切换流畅性），则选用原生开发，因为H5其本质是网页，换页时，基本要加载整个页面，就像是浏览器打开一个新页面一样，显得较慢，而原生系统则只加载变化部分。</p>
+<p>3.如果APP对有无网络、网络优劣敏感（譬如有离线操作，在线操作），那么，基本选用原生开发，虽然H5可以做到，但是很复杂。</p>
+<p>4.如果APP需要频繁调用硬件（摄像头、麦克风、未来的湿度检测仪等等）那么，基本选用原生开发，这样支持硬件更多，更容易扩展，且调用速度更快，H5就望尘莫及了。</p>
+<p>5.如果APP用户常见页面频换，如（淘宝首页各种不同活动），那么用H5，维护起来更容易。</p>
+<p>6.如果预算有限（H5开发一套可跨平台覆盖安卓、ios，黑莓、塞班），不是很讲究用户体验，不在乎加载速度，那非H5不可。</p>
+<p>列举那么多，实际上有个采阴补阳的方法是H5+原生混合开发，对于固定格式、页面速度要求高，的模块（如PDB的即时通讯、宝典、我的项目）采用原生开发，对于新闻、大段文字、资讯类的（如信息广场、发表、问吧等）用H5页面来加载，将其嵌入到原生框架中那么，可以达到比较良好的体验。那么到底什么时混合式开发了，终于可以切入主题了。</p>
+<h3 id="混合开发概述"><a href="#混合开发概述" class="headerlink" title="混合开发概述"></a>混合开发概述</h3><p>Hybrid App主要以JS+Native两者相互调用为主，从开发层面实现“一次开发，多处运行”的机制，成为真正适合跨平台的开发。Hybrid App兼具了Native App良好用户体验的优势，也兼具了Web App使用HTML5跨平台开发低成本的优势。</p>
+<p>目前已经有众多Hybrid App开发成功应用，比如美团、爱奇艺、微信等知名移动应用，都是采用Hybrid App开发模式。</p>
+<h4 id="app开发的三种方式"><a href="#app开发的三种方式" class="headerlink" title="app开发的三种方式"></a>app开发的三种方式</h4><p>移动应用开发的方式，目前主要有三种：</p>
+<ul>
+<li><p>Native App： 本地应用程序（原生App）</p>
+</li>
+<li><p>Web App：网页应用程序（移动web）</p>
+</li>
+<li><p>Hybrid App：混合应用程序（混合App）</p>
+<p><img src="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png" alt="三种app开发方式"></p>
+</li>
+</ul>
+<p>在网上搜集到了关于三种开发方式的详细对比，如下表</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Native App</th>
+<th>Hybrid App</th>
+<th>Web App</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发语言</td>
+<td>只用Native开发语言</td>
+<td>Native和Web开发语言或只用Web开发语言</td>
+<td>只用Web开发语言</td>
+</tr>
+<tr>
+<td>代码移植性和优化</td>
+<td>无</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>访问针对特定设备的特性</td>
+<td>高</td>
+<td>中</td>
+<td>低</td>
+</tr>
+<tr>
+<td>充分利用现有知识</td>
+<td>低</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>高级图形</td>
+<td>高</td>
+<td>中</td>
+<td>中</td>
+</tr>
+<tr>
+<td>升级灵活性</td>
+<td>低，总是通过应用升级</td>
+<td>中，部分更新可不通过应用商店升级</td>
+<td>高</td>
+</tr>
+<tr>
+<td>安装体验</td>
+<td>高，从应用商店安装</td>
+<td>高，从应用商店安装</td>
+<td>中，通过浏览器安装</td>
+</tr>
+</tbody>
+</table>
+<h4 id="混合开发应用场景"><a href="#混合开发应用场景" class="headerlink" title="混合开发应用场景"></a>混合开发应用场景</h4><p> （1）折中考虑——如果企业使用 Hybrid 开发方法，就能集Native 和web两者之所长。一方面，Native 让开发者可以充分利用现代移动设备所提供的全部不同的特性和功能。另一方面，使用 Web 语言编写的所有代码都可以在不同的移动平台之间共享，使得开发和日常维护过程变得集中式、更简短、更经济高效。</p>
+<p>（2）内部技能——许多企业都拥有Web 开发技能。如果选择 Hybrid 开发方法，在合适解决方案的支持下，Web 开发者只要仅仅运用 HTML、CSS 和 JavaScript 等 Web 技能，就能构建 App，同时提供 Native 用户体验。</p>
+<p>（3）考虑未来——HTML5的可用性和功能都在迅速改进。许多分析师预测，它可能会成为开发前端 App 的默认技术。如果用 HTML 来编写 App 的大部分代码，并且只有在需要时才使用 Native 代码，公司就能确保他们今天的投入在明天不会变得过时，因为 HTML 功能变得更丰富，可以满足现代企业一系列更广泛的移动要求。</p>
+<p>总结起来两句话：</p>
+<p>纯Native的迭代太慢，不能动态更新，且不能跨平台</p>
+<p>纯Web页，有很功能无法实现，有些动画效果实现其体验太差</p>
+<p>因此我们需要Hybrid</p>
+<p>ps：怎样判断一个App的页面是native的还是web的？</p>
+<p>Android手机 设置-&gt;开发者选项-&gt;显示布局边界 即可</p>
+<h4 id="混合开发app技术"><a href="#混合开发app技术" class="headerlink" title="混合开发app技术"></a>混合开发app技术</h4><p>Bootstrap，来自 Twitter，是目前很受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web <a href="https://developer.aliyun.com/index" target="_blank" rel="noopener">开发</a>更加快捷。[1] 它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。[2] 国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来</p>
+<p>Ratchet,一个优秀的类似bootstrap的前端框架,使用HTML,CSS3与javascript快速创建Hybrid(混合模式)手机应用APP。</p>
+<p>Framework7 是一个开源免费的框架可以用来开发混合移动应用（原生和HTML混合）或者开发iOS7风格的WEB APP。也可以用来作为原型开发工具，可以迅速创建一个应用的原型。<br>Framework7 最主要的功能是可以使用HTML、CSS和JS来开发iOS7应用。Framework7 是完全免费开源的。<br>    Framework7 并不能兼容所有的设备。她只专注于为iOS7 提供最好的体验。</p>
+<p>三者的应用不一样的，特别是 rachet 的介绍比较少。<br>Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。</p>
+<p>Ratchet: Build mobile apps with simple HTML, CSS, and JS components.</p>
+<p>Framework7 或者叫 F7 是全功能的绑定 iOS 7 应用的 HTML 框架。Framework7 是免费开源的 HTML 移动端框架，用来开发混合移动端应用或者 iOS 7 的 Web 应用，并且带有 iOS 7 的原生外观和感觉。Framework7 也是独立的原型应用工具。<br>    Framework7 使用 Javascript，CSS 和 HTML 来创建 iOS 7 应用，支持多个平台的迁移（PhoneGap），但是不是支持所有平台，主要还是针对 iOS 7。</p>
+<p>好了，本篇文章就先介绍到这里，下篇文章再介绍关于Framework7一些使用中容易踩坑的地方。</p>
+<h5 id=""><a href="#" class="headerlink" title=" "></a> </h5>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>XiaoRI</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/07/28/Hybrid-App-和Native-App开发对比/" target="_blank" title="Hybrid App 和Native App开发对比">http://yoursite.com/2018/07/28/Hybrid-App-和Native-App开发对比/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/21/整理一下framework7零散知识/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">整理一下framework7零散知识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合开发概述"><span class="nav-number">3.</span> <span class="nav-text">混合开发概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app开发的三种方式"><span class="nav-number">3.1.</span> <span class="nav-text">app开发的三种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发应用场景"><span class="nav-number">3.2.</span> <span class="nav-text">混合开发应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发app技术"><span class="nav-number">3.3.</span> <span class="nav-text">混合开发app技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">3.3.1.</span> <span class="nav-text"> </span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 小日的博客 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            小日的博客
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 XiaoRI All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
