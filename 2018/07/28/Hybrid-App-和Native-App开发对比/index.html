@@ -11,20 +11,18 @@
   
   
   
-  <meta name="description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
+  <meta name="description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 智能手机之普及不用多说，手机APP渗投到各个行业：电商（淘宝、京东等）、金融（各手机行业、P2P借贷等）、医疗（智慧医疗）、交通（滴滴、Uber等）、教育（慕课网等）、餐饮（饿了吗、美团等）……反正只要是个企业，无论规模大小，都已经订制或将要订制自己的APP。这么多APP无外乎就三种模式：Native App、Web App">
 <meta name="keywords" content="hybridApp 框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hybrid App 和Native App开发对比">
 <meta property="og:url" content="http://yoursite.com/2018/07/28/Hybrid-App-和Native-App开发对比/index.html">
 <meta property="og:site_name" content="小日的博客">
-<meta property="og:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
+<meta property="og:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 智能手机之普及不用多说，手机APP渗投到各个行业：电商（淘宝、京东等）、金融（各手机行业、P2P借贷等）、医疗（智慧医疗）、交通（滴滴、Uber等）、教育（慕课网等）、餐饮（饿了吗、美团等）……反正只要是个企业，无论规模大小，都已经订制或将要订制自己的APP。这么多APP无外乎就三种模式：Native App、Web App">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png">
-<meta property="og:updated_time" content="2018-07-28T04:07:40.183Z">
+<meta property="og:updated_time" content="2018-07-29T02:37:23.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hybrid App 和Native App开发对比">
-<meta name="twitter:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。 背景目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png">
+<meta name="twitter:description" content="引言目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。 智能手机之普及不用多说，手机APP渗投到各个行业：电商（淘宝、京东等）、金融（各手机行业、P2P借贷等）、医疗（智慧医疗）、交通（滴滴、Uber等）、教育（慕课网等）、餐饮（饿了吗、美团等）……反正只要是个企业，无论规模大小，都已经订制或将要订制自己的APP。这么多APP无外乎就三种模式：Native App、Web App">
   
     <link rel="alternate" href="/atom.xml" title="小日的博客" type="application/atom+xml">
   
@@ -196,6 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>目前app开发市场需求量越来越大，此片文章主要涉及开发技术展开讨论。</p>
+<p>智能手机之普及不用多说，手机APP渗投到各个行业：电商（淘宝、京东等）、金融（各手机行业、P2P借贷等）、医疗（智慧医疗）、交通（滴滴、Uber等）、教育（慕课网等）、餐饮（饿了吗、美团等）……反正只要是个企业，无论规模大小，都已经订制或将要订制自己的APP。这么多APP无外乎就三种模式：Native App、Web App、Hybrid App。 </p>
 <p>app的开发技术，目前流行的无非就是两种开发方式，原生和Html5。原生又分为安卓平台和IOS平台。</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>目前争论不休的问题，在早先前争论CS，BS架构的软件系统是一样一样的。原先BS，CS对用户而言的区别是需不需要安装客户端。BS是通过浏览器来访问，用PC，平板，Win，Mac都能访问，用户不需要下载额外的客户端，同时运维和升级提供很大的便利。CS则需要下载客户端软件，安装，然后登录使用，升级的话，要么升级链接库，要么重新安装升级包，比较不方便，优势是很多算法在本地运行，对服务器要求不高。</p>
 <p>CS、BS之争是在PC端，那么现在原生和H5之争是在移动端。</p>
@@ -207,18 +206,15 @@
 <p>5.如果APP用户常见页面频换，如（淘宝首页各种不同活动），那么用H5，维护起来更容易。</p>
 <p>6.如果预算有限（H5开发一套可跨平台覆盖安卓、ios，黑莓、塞班），不是很讲究用户体验，不在乎加载速度，那非H5不可。</p>
 <p>列举那么多，实际上有个采阴补阳的方法是H5+原生混合开发，对于固定格式、页面速度要求高，的模块（如PDB的即时通讯、宝典、我的项目）采用原生开发，对于新闻、大段文字、资讯类的（如信息广场、发表、问吧等）用H5页面来加载，将其嵌入到原生框架中那么，可以达到比较良好的体验。那么到底什么时混合式开发了，终于可以切入主题了。</p>
-<h3 id="混合开发概述"><a href="#混合开发概述" class="headerlink" title="混合开发概述"></a>混合开发概述</h3><p>Hybrid App主要以JS+Native两者相互调用为主，从开发层面实现“一次开发，多处运行”的机制，成为真正适合跨平台的开发。Hybrid App兼具了Native App良好用户体验的优势，也兼具了Web App使用HTML5跨平台开发低成本的优势。</p>
-<p>目前已经有众多Hybrid App开发成功应用，比如美团、爱奇艺、微信等知名移动应用，都是采用Hybrid App开发模式。</p>
-<h4 id="app开发的三种方式"><a href="#app开发的三种方式" class="headerlink" title="app开发的三种方式"></a>app开发的三种方式</h4><p>移动应用开发的方式，目前主要有三种：</p>
-<ul>
-<li><p>Native App： 本地应用程序（原生App）</p>
-</li>
-<li><p>Web App：网页应用程序（移动web）</p>
-</li>
-<li><p>Hybrid App：混合应用程序（混合App）</p>
-<p><img src="https://images2015.cnblogs.com/blog/977542/201606/977542-20160615145356995-91223952.png" alt="三种app开发方式"></p>
-</li>
-</ul>
+<h3 id="三种开发方式"><a href="#三种开发方式" class="headerlink" title="三种开发方式"></a>三种开发方式</h3><h4 id="1-Native-App"><a href="#1-Native-App" class="headerlink" title="1. Native App"></a>1. Native App</h4><p>Native App，原生APP，使用原生（即Android或iOS）开发的APP。两年多以前这非常流行，到现在为止，原生开发人员数量众多，一抓一大票，技术成熟，好多培训机构都抱着老掉牙的API翻来覆去的讲——尤其是Android。Sorry，说错话了……使用原生开发有其优势：应用的性能好，适配起来相对容易。学习成本要看人，个人觉得技术点不多，门槛相对稍高，但入门后学习起来就很轻松——网络资料实在是太多了。</p>
+<p>但原生APP最头疼的有三个问题：</p>
+<p>1、无法跨平台：Android和iOS都需要开发各自平台的版本——开发成本高；</p>
+<p>2、升级麻烦：每次升级都要下载安装包，Android还好，反正不需要审核，下载就下载吧，但iOS就麻烦了，发布每个版本还得经过App Store的审核，这导致第三个问题；</p>
+<p>3、Android和iOS很难同步发布。</p>
+<hr>
+<h4 id="2-Web-App"><a href="#2-Web-App" class="headerlink" title="2.Web App"></a>2.Web App</h4><p>所谓的Web App，就是把手机当做一个浏览器（Android使用WebView，iOS使用UIWebView），做几个页面挂在服务器端，类似于一个小网站。这样说虽然不太贴切，但实际上给人的感觉就是这样的。虽然开发成本大大降低，但页面访问速度慢、操作体验差。于是第三种模式诞生了。 </p>
+<hr>
+<h4 id="3-Hybrid-App"><a href="#3-Hybrid-App" class="headerlink" title="3.Hybrid App"></a>3.Hybrid App</h4><p>乍一看和Web App没啥差别，但涉及到的技术成本、开发成本、学习成本比Web App高，它综合了Web App的开发速度和Native App的高性能体验。之所以说学习成本高，是因为开发高性能的Hybrid App有难度，网络资料少。如何做好屏幕适配、提高UI响应速度、如何最大化使用原生功能等内容，网络几乎没有资料。网上能搜索到的都是很粗略的东西，或者就是Hello World级别的东西，涉及到稍微细节一点的东西几乎没有。由于本系列文章都只讲Hybrid，故在此不再啰嗦了。</p>
 <p>在网上搜集到了关于三种开发方式的详细对比，如下表</p>
 <table>
 <thead>
@@ -274,6 +270,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="混合开发概述"><a href="#混合开发概述" class="headerlink" title="混合开发概述"></a>混合开发概述</h3><p>Hybrid App主要以JS+Native两者相互调用为主，从开发层面实现“一次开发，多处运行”的机制，成为真正适合跨平台的开发。Hybrid App兼具了Native App良好用户体验的优势，也兼具了Web App使用HTML5跨平台开发低成本的优势。</p>
+<p>目前已经有众多Hybrid App开发成功应用，比如美团、爱奇艺、微信等知名移动应用，都是采用Hybrid App开发模式。 </p>
 <h4 id="混合开发应用场景"><a href="#混合开发应用场景" class="headerlink" title="混合开发应用场景"></a>混合开发应用场景</h4><p> （1）折中考虑——如果企业使用 Hybrid 开发方法，就能集Native 和web两者之所长。一方面，Native 让开发者可以充分利用现代移动设备所提供的全部不同的特性和功能。另一方面，使用 Web 语言编写的所有代码都可以在不同的移动平台之间共享，使得开发和日常维护过程变得集中式、更简短、更经济高效。</p>
 <p>（2）内部技能——许多企业都拥有Web 开发技能。如果选择 Hybrid 开发方法，在合适解决方案的支持下，Web 开发者只要仅仅运用 HTML、CSS 和 JavaScript 等 Web 技能，就能构建 App，同时提供 Native 用户体验。</p>
 <p>（3）考虑未来——HTML5的可用性和功能都在迅速改进。许多分析师预测，它可能会成为开发前端 App 的默认技术。如果用 HTML 来编写 App 的大部分代码，并且只有在需要时才使用 Native 代码，公司就能确保他们今天的投入在明天不会变得过时，因为 HTML 功能变得更丰富，可以满足现代企业一系列更广泛的移动要求。</p>
@@ -283,12 +281,31 @@
 <p>因此我们需要Hybrid</p>
 <p>ps：怎样判断一个App的页面是native的还是web的？</p>
 <p>Android手机 设置-&gt;开发者选项-&gt;显示布局边界 即可</p>
-<h4 id="混合开发app技术"><a href="#混合开发app技术" class="headerlink" title="混合开发app技术"></a>混合开发app技术</h4><p>Bootstrap，来自 Twitter，是目前很受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web <a href="https://developer.aliyun.com/index" target="_blank" rel="noopener">开发</a>更加快捷。[1] 它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。[2] 国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来</p>
-<p>Ratchet,一个优秀的类似bootstrap的前端框架,使用HTML,CSS3与javascript快速创建Hybrid(混合模式)手机应用APP。</p>
+<h4 id="混合开发app技术"><a href="#混合开发app技术" class="headerlink" title="混合开发app技术"></a>混合开发app技术</h4><h5 id="Hybrid-App所需技术"><a href="#Hybrid-App所需技术" class="headerlink" title="Hybrid App所需技术"></a>Hybrid App所需技术</h5><p>Hybrid App由于需要保证运行性能与开发速度，需要如下技术支持，本系列博文均会按照Demo的开发顺序依次描述本人的开发心得和教训，希望能起到一个抛砖引玉的作用。</p>
+<h5 id="Native技术"><a href="#Native技术" class="headerlink" title="Native技术"></a>Native技术</h5><p>Native技术主要用于提供原生支持，要做到跨平台，就需要掌握部分Android和iOS的知识，除了多线程，文件存储等基础知识，Android需要非常熟练的掌握<strong>WebView**</strong>、WebSettings<strong><strong>、WebChromeClient</strong></strong>、WebClient<strong>四大对象。iOS需要非常熟练掌握</strong>UIWebView**对象。</p>
+<h5 id="Web技术"><a href="#Web技术" class="headerlink" title="Web技术"></a>Web技术</h5><h6 id="1、-HTML5"><a href="#1、-HTML5" class="headerlink" title="1、 HTML5"></a><strong>1、</strong> <strong>HTML5</strong></h6><p>熟练掌握HTML5的各个标签，如何编写最优的文档结构。</p>
+<h6 id="2、-CSS"><a href="#2、-CSS" class="headerlink" title="2、 CSS"></a><strong>2、</strong> <strong>CSS</strong></h6><p>熟练掌握CSS2和CSS3的新特性，能按照效果图编写最高性能的样式。</p>
+<p>使用SCSS生成CSS，将CSS可编程化。</p>
+<h6 id="3、-JavaScript"><a href="#3、-JavaScript" class="headerlink" title="3、 JavaScript"></a><strong>3、</strong> <strong>JavaScript</strong></h6><p>实现业务逻辑控制。个人理解JavaScript主要包含两大内容：DOM编程和面向对象编程。大部分JS开发人员就只掌握DOM编程，诸如document.getElementById()等，但面向对象是很重要的一个方面。</p>
+<h6 id="4、-性能和开发"><a href="#4、-性能和开发" class="headerlink" title="4、 性能和开发"></a>4、 性能和开发</h6><p><strong>模块化编程</strong>：编写可复用的组建；</p>
+<p>CSS渲染：了解浏览器的CSS渲染引擎才能编写更高效率的样式；</p>
+<p>JS解析：了解浏览器的JS解析引擎才能优化JS脚本；</p>
+<p><strong>HTTP**</strong>协议**：熟练掌握HTTP请求的各个内容；</p>
+<p><strong>AJAX</strong>：和服务器端的交互大都采用AJAX。</p>
+<h4 id="流行框架"><a href="#流行框架" class="headerlink" title="流行框架"></a>流行框架</h4><h5 id="Hybrid-框架"><a href="#Hybrid-框架" class="headerlink" title="Hybrid 框架"></a>Hybrid 框架</h5><p>Cordova/PhoneGap：侧重于JS与原生的交互，开发简单，但性能差，如触摸时反应不灵敏。</p>
+<p>AppCan：性能还行，使用简单，但要提交代码给AppCan的服务器才能打包，相信有追求的企业是不会把自己的代码提交给第三方，把打包权利交给第三方的。</p>
+<p>Ionic Framework：在Cordova的基础上增加一些UI/JS方面的东西，样式还不错，但同样具有Cordova的不足。</p>
+<h5 id="UI-JS框架"><a href="#UI-JS框架" class="headerlink" title="UI/JS框架"></a>UI/JS框架</h5><p>jQuery Mobile：上手简单，组件丰富，但性能超级差，闪屏现象严重。</p>
+<p>Senche Touch：简单看过，没有使用过，貌似UI很漂亮，学习成本高。</p>
+<p>React Native：FB推出的，当年FB是最早尝试Hybrid的，但性能超差，于是APP放弃了Hybrid，走原生的道路。在大家都不看好H5时，FB暗中深入挖掘H5，三年之后推出了这个框架，非常推荐各位去学习其中的思想。</p>
+<p>GMU：百度推出的，这个不错。</p>
 <p>Framework7 是一个开源免费的框架可以用来开发混合移动应用（原生和HTML混合）或者开发iOS7风格的WEB APP。也可以用来作为原型开发工具，可以迅速创建一个应用的原型。<br>Framework7 最主要的功能是可以使用HTML、CSS和JS来开发iOS7应用。Framework7 是完全免费开源的。<br>    Framework7 并不能兼容所有的设备。她只专注于为iOS7 提供最好的体验。</p>
-<p>三者的应用不一样的，特别是 rachet 的介绍比较少。<br>Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。</p>
-<p>Ratchet: Build mobile apps with simple HTML, CSS, and JS components.</p>
 <p>Framework7 或者叫 F7 是全功能的绑定 iOS 7 应用的 HTML 框架。Framework7 是免费开源的 HTML 移动端框架，用来开发混合移动端应用或者 iOS 7 的 Web 应用，并且带有 iOS 7 的原生外观和感觉。Framework7 也是独立的原型应用工具。<br>    Framework7 使用 Javascript，CSS 和 HTML 来创建 iOS 7 应用，支持多个平台的迁移（PhoneGap），但是不是支持所有平台，主要还是针对 iOS 7。</p>
+<h5 id="UI-JS库"><a href="#UI-JS库" class="headerlink" title="UI/JS库"></a>UI/JS库</h5><p>这个就多了，jQuery、Zepto、Swiper、iScroll、RequireJS、AngularJS……</p>
+<h5 id="个人建议"><a href="#个人建议" class="headerlink" title="个人建议"></a>个人建议</h5><p>由于移动端是一个重视性能和用户体验的终端，大量采用框架存在一些问题：</p>
+<p>1、 扩展、维护、定制成本，这个非常需要考虑，或许框架提供的UI风格和自己设计的UI风格差异大，导致设计围绕框架转，不符合产品的需求。</p>
+<p>2、 既然是框架，强调的是覆盖面广度和功能的全面，会有很多无用的东西，带来累赘；</p>
+<p>3、 框架本身存在BUG，或许需要开发人员面对一些能力之外的问题。</p>
 <p>好了，本篇文章就先介绍到这里，下篇文章再介绍关于Framework7一些使用中容易踩坑的地方。</p>
 <h5 id=""><a href="#" class="headerlink" title=" "></a> </h5>
       
@@ -379,7 +396,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合开发概述"><span class="nav-number">3.</span> <span class="nav-text">混合开发概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app开发的三种方式"><span class="nav-number">3.1.</span> <span class="nav-text">app开发的三种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发应用场景"><span class="nav-number">3.2.</span> <span class="nav-text">混合开发应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发app技术"><span class="nav-number">3.3.</span> <span class="nav-text">混合开发app技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">3.3.1.</span> <span class="nav-text"> </span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种开发方式"><span class="nav-number">3.</span> <span class="nav-text">三种开发方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Native-App"><span class="nav-number">3.1.</span> <span class="nav-text">1. Native App</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Web-App"><span class="nav-number">3.2.</span> <span class="nav-text">2.Web App</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Hybrid-App"><span class="nav-number">3.3.</span> <span class="nav-text">3.Hybrid App</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合开发概述"><span class="nav-number">4.</span> <span class="nav-text">混合开发概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发应用场景"><span class="nav-number">4.1.</span> <span class="nav-text">混合开发应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合开发app技术"><span class="nav-number">4.2.</span> <span class="nav-text">混合开发app技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hybrid-App所需技术"><span class="nav-number">4.2.1.</span> <span class="nav-text">Hybrid App所需技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Native技术"><span class="nav-number">4.2.2.</span> <span class="nav-text">Native技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Web技术"><span class="nav-number">4.2.3.</span> <span class="nav-text">Web技术</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、-HTML5"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">1、 HTML5</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、-CSS"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">2、 CSS</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、-JavaScript"><span class="nav-number">4.2.3.3.</span> <span class="nav-text">3、 JavaScript</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、-性能和开发"><span class="nav-number">4.2.3.4.</span> <span class="nav-text">4、 性能和开发</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流行框架"><span class="nav-number">4.3.</span> <span class="nav-text">流行框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hybrid-框架"><span class="nav-number">4.3.1.</span> <span class="nav-text">Hybrid 框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UI-JS框架"><span class="nav-number">4.3.2.</span> <span class="nav-text">UI/JS框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UI-JS库"><span class="nav-number">4.3.3.</span> <span class="nav-text">UI/JS库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#个人建议"><span class="nav-number">4.3.4.</span> <span class="nav-text">个人建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">4.3.5.</span> <span class="nav-text"> </span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>
