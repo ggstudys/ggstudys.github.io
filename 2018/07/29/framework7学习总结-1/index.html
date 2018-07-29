@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>framework7学习总结(1) | 小日的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="framework7" />
+  
+  
+  
+  
+  <meta name="description" content="引言本篇主要讨论framework7的page和路由 page页面结构使用framework有着严格的布局要求，依次body&amp;gt;div class=&amp;quot;views&amp;quot;&amp;gt;div class=&amp;quot;view&amp;quot;&amp;gt;div class=&amp;quot;pages&amp;gt;div class=&amp;quot;page&amp;quot;&amp;gt;div class=&amp;quot;pa">
+<meta name="keywords" content="framework7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="framework7学习总结(1)">
+<meta property="og:url" content="http://yoursite.com/2018/07/29/framework7学习总结-1/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言本篇主要讨论framework7的page和路由 page页面结构使用framework有着严格的布局要求，依次body&amp;gt;div class=&amp;quot;views&amp;quot;&amp;gt;div class=&amp;quot;view&amp;quot;&amp;gt;div class=&amp;quot;pages&amp;gt;div class=&amp;quot;page&amp;quot;&amp;gt;div class=&amp;quot;pa">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-29T04:09:28.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="framework7学习总结(1)">
+<meta name="twitter:description" content="引言本篇主要讨论framework7的page和路由 page页面结构使用framework有着严格的布局要求，依次body&amp;gt;div class=&amp;quot;views&amp;quot;&amp;gt;div class=&amp;quot;view&amp;quot;&amp;gt;div class=&amp;quot;pages&amp;gt;div class=&amp;quot;page&amp;quot;&amp;gt;div class=&amp;quot;pa">
+  
+    <link rel="alternate" href="/atom.xml" title="小日的博客" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-framework7学习总结-1" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      framework7学习总结(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/29/framework7学习总结-1/" class="article-date">
+	  <time datetime="2018-07-29T03:17:20.000Z" itemprop="datePublished">2018-07-29</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>本篇主要讨论framework7的page和路由</p>
+<h3 id="page"><a href="#page" class="headerlink" title="page"></a>page</h3><h4 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h4><p>使用framework有着严格的布局要求，依次<code>body&gt;div class=&quot;views&quot;&gt;div class=&quot;view&quot;&gt;div class=&quot;pages&gt;div class=&quot;page&quot;&gt;div class=&quot;page-content&quot;</code>;必须依据此布局格式进行布局，否则会遇到很多意想不到的bug,比如页面不能正常返回和切换等等；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;!-- Views --&gt;</span><br><span class="line">  &lt;div class=&quot;views&quot;&gt;</span><br><span class="line">    &lt;!-- Your main view --&gt;</span><br><span class="line">    &lt;div class=&quot;view view-main&quot;&gt;</span><br><span class="line">      &lt;!-- Pages --&gt;</span><br><span class="line">      &lt;div class=&quot;pages&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;page&quot; data-page=&quot;home&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;page-content&quot;&gt;</span><br><span class="line">            ... page content goes here ...</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- Another view --&gt;</span><br><span class="line">    &lt;div class=&quot;view another-view&quot;&gt;</span><br><span class="line">      &lt;!-- Pages --&gt;</span><br><span class="line">      &lt;div class=&quot;pages&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;page&quot; data-page=&quot;home-another&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;page-content&quot;&gt;</span><br><span class="line">            ... page content goes here ...</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;          </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="page事件"><a href="#page事件" class="headerlink" title="page事件"></a>page事件</h4><p>掌握了常见了page事件能帮助我们更高效的开发app，现在我们看看页面浏览的时候最重要的一部分 - Page 事件。这些事件可以让我们通过JS来操作加载好的Page。 </p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pageBeforeInit</td>
+<td>Page Element<div class="page"></div></td>
+<td>当Framework7把新页面插入DOM的时候会触发</td>
+</tr>
+<tr>
+<td>pageInit</td>
+<td>Page Element<div class="page"></div></td>
+<td>当Framework7初始化页面的组件的时候会触发</td>
+</tr>
+<tr>
+<td>pageReinit</td>
+<td>Page Element<div class="page"></div></td>
+<td>当缓存页面可见时，将触发此事件。它只适用于内联页面（DOM缓存页）。</td>
+</tr>
+<tr>
+<td>pageBeforeAnimation</td>
+<td>Page Element<div class="page"></div></td>
+<td>当页面初始化完成并且可以做动画的时候触发</td>
+</tr>
+<tr>
+<td>pageAfterAnimation</td>
+<td>Page Element<div class="page"></div></td>
+<td>在页面动画完成之后触发</td>
+</tr>
+<tr>
+<td>pageBeforeRemove</td>
+<td>Page Element<div class="page"></div></td>
+<td>Page从DOM中移除之前就会触发这个事件。如果你希望做一些解除事件绑定或者销毁一些插件的时候，这个方法是很有用的。</td>
+</tr>
+<tr>
+<td>pageBack</td>
+<td>Page Element<div class="page"></div></td>
+<td>在返回上一页动画执行之前就会触发这个事件。和 “pageBeforeAnimation” 的不同之处在于，这个事件在老页面上也会触发，也就是那个从中间滑动到右边的页面。</td>
+</tr>
+<tr>
+<td>pageAfterBack</td>
+<td>Page Element<div class="page"></div></td>
+<td>返回上一页动画执行完成之后触发这个事件。同样，区别于”pageAfterAnimation”，他也会在老页面上触发。</td>
+</tr>
+</tbody>
+</table>
+<p>有两种方式可以使用这些事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// Option 1. Using one &apos;pageInit&apos; handler for all pages (recommended way):</span><br><span class="line">$$(document).on(&apos;pageInit&apos;, function (e) &#123;</span><br><span class="line">  // Do something here when page loaded and initialized</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">// Option 2. Using live &apos;pageInit&apos; event handlers for each page (not recommended)</span><br><span class="line">$$(document).on(&apos;pageInit&apos;, &apos;.page[data-page=&quot;about&quot;]&apos;, function (e) &#123;</span><br><span class="line">  // Do something here when page with data-page=&quot;about&quot; attribute loaded and initialized</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="视图中页面切换的方法"><a href="#视图中页面切换的方法" class="headerlink" title="视图中页面切换的方法"></a>视图中页面切换的方法</h4><p>在视图中切换是非常常见的功能，官方也给我们提供了对应的API</p>
+<p>在视图中主要有两个路由器方法:</p>
+<p>mainView.router.load(options) - 把一个页面加载到当前视图</p>
+<p>mainView.router.back(options) - 这个方法会触发一个反向的动画并回到上一个页面，也就是浏览历史上的回退</p>
+<p>上面这些方法都接受一个 <code>options</code> 对象作为参数，这个参数有如下属性:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>需要加载的页面的URL</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string or HTMLElement or [jQuery/Zepto/DOM7 collection] or [array of HTMLElement]</td>
+<td>需要加载的动态页面的内容</td>
+</tr>
+<tr>
+<td>pageName</td>
+<td>string</td>
+<td>需要加载的页面的名称(data-page)。只用在内联页面(DOM cached)。</td>
+</tr>
+<tr>
+<td>template</td>
+<td>function (<a href="http://framework7.taobao.org/docs/template7.html" target="_blank" rel="noopener">Template7</a> compiled template)</td>
+<td>需要加载并渲染的模板</td>
+</tr>
+<tr>
+<td>context</td>
+<td>object or array</td>
+<td>渲染Template7 模板时需要的上下文。这里有更多说明<a href="http://framework7.taobao.org/docs/template7-pages.html" target="_blank" rel="noopener">Template7 Pages</a>。</td>
+</tr>
+<tr>
+<td>contextName</td>
+<td>string</td>
+<td>可选的。用来渲染 Template7 的 <code>templatesData</code> 的上下文名称/路径。这里查看更多说明 <a href="http://framework7.taobao.org/docs/template7-pages.html" target="_blank" rel="noopener">Template7 Pages</a></td>
+</tr>
+<tr>
+<td>query</td>
+<td>object</td>
+<td>Object with additionall query parameters that could be retreived in <code>query</code> object of <a href="http://framework7.taobao.org/docs/pages.html#page-data" target="_blank" rel="noopener">Page Data</a></td>
+</tr>
+<tr>
+<td>force</td>
+<td>boolean</td>
+<td>可选的。只对 <code>back</code> 方法有效。如果设置为 <code>true</code>，那么会忽略浏览历史中的上一个页面，而是直接加载指定的页面。</td>
+</tr>
+<tr>
+<td>ignoreCache</td>
+<td>boolean</td>
+<td>可选的。如果设置为 <code>true</code> ，那么会忽略URL对应的缓存，并且再次通过XHR来加载。</td>
+</tr>
+<tr>
+<td>animatePages</td>
+<td>boolean</td>
+<td>可选的。可以覆盖在 View 中的相同参数，打开/关闭页面切换的动画。</td>
+</tr>
+<tr>
+<td>reload</td>
+<td>boolean</td>
+<td>可选的。如果设置为 <code>true</code>，那么不会当做新页面加载，而是直接替换当前视图的当前页面。并且在视图浏览历史中替换最后一条历史。</td>
+</tr>
+<tr>
+<td>reloadPrevious</td>
+<td>boolean</td>
+<td>可选的。和 <code>reload</code> 一样，不过是对上一个页面。</td>
+</tr>
+<tr>
+<td>pushState</td>
+<td>boolean</td>
+<td>可选的。是否把浏览历史存储在浏览器的浏览历史中。(这样可以使用浏览器的后退/前进按钮）</td>
+</tr>
+</tbody>
+</table>
+<p>注意， <code>url</code>, <code>content</code>, <code>pageName</code> 这三个参数，你只能同时使用一个。</p>
+<h4 id="视图中页面切换的快捷方式"><a href="#视图中页面切换的快捷方式" class="headerlink" title="视图中页面切换的快捷方式"></a>视图中页面切换的快捷方式</h4><h5 id="加载新页面的方法"><a href="#加载新页面的方法" class="headerlink" title="加载新页面的方法:"></a>加载新页面的方法:</h5><p>mainView.router.loadPage(url) - 加载指定的页面到视图中。其实和你在页面中点击一个链接是一样的效果。</p>
+<ul>
+<li>url - 需要加载的页面的URL</li>
+</ul>
+<p>mainView..router.loadContent(content) - 把动态生成的内容当做一个页面加载</p>
+<ul>
+<li>content - string or HTMLElement or [jQuery/Zepto/DOM7 collection] or [array of HTMLElement] - 需要加载的内容</li>
+</ul>
+<h5 id="重新加载当前页面的方法"><a href="#重新加载当前页面的方法" class="headerlink" title="重新加载当前页面的方法:"></a>重新加载当前页面的方法:</h5><p>mainView.router.reloadPage(url) - 重新加载指定的页面到视图的当前页面。同时也会修改视图的浏览历史，把最后一条记录替换成指定的URL。</p>
+<ul>
+<li>url - 需要加载页面的URL</li>
+</ul>
+<p>mainView.router.reloadContent(content) - 重新加载指定的内容到视图的当前页面。同时也会修改视图的浏览历史，把最后一条记录替换成指定的URL。</p>
+<ul>
+<li>content - string or HTMLElement or [jQuery/Zepto/DOM7 collection] or [array of HTMLElement] - 需要加载的内容</li>
+</ul>
+<h5 id="重新加载上一个页面的方法（如果视图的DOM中有两个页面）："><a href="#重新加载上一个页面的方法（如果视图的DOM中有两个页面）：" class="headerlink" title="重新加载上一个页面的方法（如果视图的DOM中有两个页面）："></a>重新加载上一个页面的方法（如果视图的DOM中有两个页面）：</h5><p>mainView.router.reloadPreviousPage(url) - 重新加载指定的页面到视图的上一个页面。同时也会修改视图的浏览历史，把最后一条记录替换成指定的URL。</p>
+<ul>
+<li>url - 需要加载页面的URL</li>
+</ul>
+<p>mainView.router.reloadPreviousContent(content) - 重新加载指定的内容到视图的上一个页面。同时也会修改视图的浏览历史，把最后一条记录替换成指定的URL。</p>
+<ul>
+<li>content - string or HTMLElement or [jQuery/Zepto/DOM7 collection] or [array of HTMLElement] - 需要加载内容</li>
+</ul>
+<h5 id="刷新页面的方法"><a href="#刷新页面的方法" class="headerlink" title="刷新页面的方法:"></a>刷新页面的方法:</h5><p>mainView.router.refreshPage() - 刷新视图的当前页面。和你调用 <code>.reloadPage</code> 方法并且传入当前页面的URL是一样的效果</p>
+<p>mainView.router.refreshPreviousPage() - 刷新视图的上一个页面。和你调用 <code>.reloadPreviousPage</code> 方法并且传入上一个页面的URL是一样的效果</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><h4 id="Ajax-Page"><a href="#Ajax-Page" class="headerlink" title="Ajax Page"></a>Ajax Page</h4><p>我们有了一个有View和Page的应用结构，现在我们需要理解如何创建新的Page，以及Framework7是如何加载他们的。</p>
+<p>下面有两个重要的地方请注意：</p>
+<p>p <strong>默认情况下 Framework7 会使用 Ajax 加载所有的页面</strong>，除了带有 <strong>external</strong> class的链接（<strong><a href="somepage.html" class="external"></a></strong>）和没有正确 <strong>href</strong> 值的链接（比如是空的或者是 <strong>#</strong>）。 p 在 <a href="http://framework7.taobao.org/docs/init-app.html" target="_blank" rel="noopener">初始化</a> 时候传递不同的 <strong>ajaxLinks</strong> 参数可以改变这个行为。</p>
+<p>所以我们如果需要创建一个链接指向 <code>about.html</code>，我们只需要按照平时一样写 <code>&lt;a&gt;</code>标签就可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;about.html&quot;&gt;Go to About page&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>当我们点击这个链接的时候，Framework7会通过Ajax获取 <code>about.html</code>，解析它的内容，然后把它插入到DOM中，并且做一个动画切换到这个新页面。</p>
+<h5 id="Page-内部的结构"><a href="#Page-内部的结构" class="headerlink" title="Page 内部的结构"></a>Page 内部的结构</h5><p>因为Framework7有一个非常聪明的解析器，所以在内部页面中我们不需要完整的HTML结构（head,body,views,pages等)。比如 <code>about.html</code> 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;-- That is all we have in about.html file --&gt;</span><br><span class="line">&lt;div class=&quot;page&quot; data-page=&quot;about&quot;&gt;</span><br><span class="line">... About page content goes here</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>重点是，Framework7 解析器会尝试在ajax加载的页面中寻找 <code>&lt;div class=&quot;page&quot;&gt;</code>，所以我们不需要完整的HTML结构。当然这不是强制的，你可以写出完整的页面结构。</p>
+<h5 id="取消-增加页面切换动画"><a href="#取消-增加页面切换动画" class="headerlink" title="取消/增加页面切换动画"></a>取消/增加页面切换动画</h5><p>有时候你在加载页面或者后退的时候需要立刻执行，不想要一个切换的动画效果，可以通过增加一个 “no-animation” class 在链接上即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;page&quot; data-page=&quot;about&quot;&gt;</span><br><span class="line">  &lt;-- Add additional &quot;no-anmation&quot; class to link to diable animated page transition --&gt;</span><br><span class="line">  &lt;a href=&quot;about.html&quot; class=&quot;no-animation&quot;&gt; Load About page immediately &lt;/a&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;-- The same rule for back link --&gt;</span><br><span class="line">  &lt;a href=&quot;index.html&quot; class=&quot;back no-animation&quot;&gt; Go back immediately &lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如果我们已经全局禁用了动画，但是在某些链接上希望启用这些动画，那么我们可以给链接加上 “with-animation” class。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;page&quot; data-page=&quot;about&quot;&gt;</span><br><span class="line">  &lt;!-- Add additional &quot;with-anmation&quot; class to link to enable animated page transition --&gt;</span><br><span class="line">  &lt;a href=&quot;about.html&quot; class=&quot;with-animation&quot;&gt; Load About page with animation &lt;/a&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;!-- The same rule for back link --&gt;</span><br><span class="line">  &lt;a href=&quot;index.html&quot; class=&quot;back with-animation&quot;&gt; Go back with animation &lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="通过-data-标签配置更多选项"><a href="#通过-data-标签配置更多选项" class="headerlink" title="通过 data 标签配置更多选项"></a>通过 data 标签配置更多选项</h5><p>有时候我们希望在某些链接上有更多的配置，我们可以使用作为 <code>data-</code>属性来配置所有在<a href="http://framework7.taobao.org/docs/views.html#view-navigation-methods" target="_blank" rel="noopener"> 视图链接方法</a>中的参数，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Refresh currently active page (reload from server) --&gt;</span><br><span class="line">&lt;a href=&quot;about.html&quot; data-reload=&quot;true&quot; data-ignore-cache=&quot;true&quot;&gt;Refresh page&lt;/a&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- Go back but to another page, not to actual previous page in history. Such method also allows to jump back in history: --&gt;</span><br><span class="line">&lt;a href=&quot;about.html&quot; class=&quot;back&quot; data-force=&quot;true&quot;&gt;Back to About&lt;/a&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- Load new page without animation --&gt;</span><br><span class="line">&lt;a href=&quot;about.html&quot; data-animate-pages=&quot;false&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>Framework7 中，页面之间的链接和路由都是很简单的，你只需要记住：</p>
+<ul>
+<li>你需要使用普通的 <code>&lt;a&gt;</code> 标签，她有一个href属性指向你需要加载的页面。</li>
+<li>通过ajax加载的页面不需要有完整的HTML结构。只需要有 <strong><div class="page"></div></strong> (和 <strong><div class="navbar"></div></strong> 如果你需要动态的滚动条)</li>
+<li>如果你在同一个文件中有多个Page，把他们用 <strong><div class="view"></div></strong> 包裹起来，并且给每一个View设置好正确的class。</li>
+<li>只需给一个链接加上 back class (<strong><a href="index.html" class="back"></a></strong>)，她就会自动变成一个后退链接。</li>
+</ul>
+<p>### </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>XiaoRI</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/07/29/framework7学习总结-1/" target="_blank" title="framework7学习总结(1)">http://yoursite.com/2018/07/29/framework7学习总结-1/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/28/Hybrid-App-和Native-App开发对比/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hybrid App 和Native App开发对比</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#page"><span class="nav-number">2.</span> <span class="nav-text">page</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面结构"><span class="nav-number">2.1.</span> <span class="nav-text">页面结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#page事件"><span class="nav-number">2.2.</span> <span class="nav-text">page事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图中页面切换的方法"><span class="nav-number">2.3.</span> <span class="nav-text">视图中页面切换的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图中页面切换的快捷方式"><span class="nav-number">2.4.</span> <span class="nav-text">视图中页面切换的快捷方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加载新页面的方法"><span class="nav-number">2.4.1.</span> <span class="nav-text">加载新页面的方法:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重新加载当前页面的方法"><span class="nav-number">2.4.2.</span> <span class="nav-text">重新加载当前页面的方法:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重新加载上一个页面的方法（如果视图的DOM中有两个页面）："><span class="nav-number">2.4.3.</span> <span class="nav-text">重新加载上一个页面的方法（如果视图的DOM中有两个页面）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刷新页面的方法"><span class="nav-number">2.4.4.</span> <span class="nav-text">刷新页面的方法:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">3.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax-Page"><span class="nav-number">3.1.</span> <span class="nav-text">Ajax Page</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Page-内部的结构"><span class="nav-number">3.1.1.</span> <span class="nav-text">Page 内部的结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取消-增加页面切换动画"><span class="nav-number">3.1.2.</span> <span class="nav-text">取消/增加页面切换动画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过-data-标签配置更多选项"><span class="nav-number">3.1.3.</span> <span class="nav-text">通过 data 标签配置更多选项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 小日的博客 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            小日的博客
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 XiaoRI All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
