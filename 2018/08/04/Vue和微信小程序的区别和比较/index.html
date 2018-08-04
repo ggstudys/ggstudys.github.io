@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vue和微信小程序的区别和比较 | 小日的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="framework7" />
+  
+  
+  
+  
+  <meta name="description" content="引言写了vue项目和小程序，发现二者有许多相同之处，在此想总结一下二者的共同点和区别。  一、生命周期先贴两张图： vue生命周期 小程序生命周期 相比之下，小程序的钩子函数要简单得多。 ue的钩子函数在跳转新页面时，钩子函数都会触发，但是小程序的钩子函数，页面不同的跳转方式，触发的钩子并不一样。onLoad：页面加载 一个页面只会调用一次，可以在 onLoad 中获取打开当前页面所调用的 que">
+<meta name="keywords" content="framework7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue和微信小程序的区别和比较">
+<meta property="og:url" content="http://yoursite.com/2018/08/04/Vue和微信小程序的区别和比较/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言写了vue项目和小程序，发现二者有许多相同之处，在此想总结一下二者的共同点和区别。  一、生命周期先贴两张图： vue生命周期 小程序生命周期 相比之下，小程序的钩子函数要简单得多。 ue的钩子函数在跳转新页面时，钩子函数都会触发，但是小程序的钩子函数，页面不同的跳转方式，触发的钩子并不一样。onLoad：页面加载 一个页面只会调用一次，可以在 onLoad 中获取打开当前页面所调用的 que">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fOuZam1pEubheoIibc2bzUG8QyAydFGKJOpAIDADnJibGWxJm8GPOoOJlGoOEq226mlaBGJjeE5iaoA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fOuZam1pEubheoIibc2bzUGv50rEYpdtYMkSJz5IGNuQ7qxXRg6OP2U4hQDTvo57sRf22gvg9UI7Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2018-08-04T14:48:48.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue和微信小程序的区别和比较">
+<meta name="twitter:description" content="引言写了vue项目和小程序，发现二者有许多相同之处，在此想总结一下二者的共同点和区别。  一、生命周期先贴两张图： vue生命周期 小程序生命周期 相比之下，小程序的钩子函数要简单得多。 ue的钩子函数在跳转新页面时，钩子函数都会触发，但是小程序的钩子函数，页面不同的跳转方式，触发的钩子并不一样。onLoad：页面加载 一个页面只会调用一次，可以在 onLoad 中获取打开当前页面所调用的 que">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fOuZam1pEubheoIibc2bzUG8QyAydFGKJOpAIDADnJibGWxJm8GPOoOJlGoOEq226mlaBGJjeE5iaoA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+  
+    <link rel="alternate" href="/atom.xml" title="小日的博客" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue和微信小程序的区别和比较" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vue和微信小程序的区别和比较
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/04/Vue和微信小程序的区别和比较/" class="article-date">
+	  <time datetime="2018-08-04T14:47:23.000Z" itemprop="datePublished">2018-08-04</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>写了vue项目和小程序，发现二者有许多相同之处，在此想总结一下二者的共同点和区别。 </p>
+<h4 id="一、生命周期"><a href="#一、生命周期" class="headerlink" title="一、生命周期"></a><strong>一、生命周期</strong></h4><p>先贴两张图：</p>
+<h5 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a><strong>vue生命周期</strong></h5><p><img src="https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fOuZam1pEubheoIibc2bzUG8QyAydFGKJOpAIDADnJibGWxJm8GPOoOJlGoOEq226mlaBGJjeE5iaoA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="Vue生命周期"></p>
+<h5 id="小程序生命周期"><a href="#小程序生命周期" class="headerlink" title="小程序生命周期"></a><strong>小程序生命周期</strong></h5><p><img src="https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fOuZam1pEubheoIibc2bzUGv50rEYpdtYMkSJz5IGNuQ7qxXRg6OP2U4hQDTvo57sRf22gvg9UI7Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>相比之下，小程序的钩子函数要简单得多。</p>
+<p>ue的钩子函数在跳转新页面时，钩子函数都会触发，但是小程序的钩子函数，页面不同的跳转方式，触发的钩子并不一样。<strong>onLoad：页面加载</strong></p>
+<p>一个页面只会调用一次，可以在 <code>onLoad</code> 中获取打开当前页面所调用的 <code>query</code> 参数。</p>
+<p><strong>onShow：页面显示</strong></p>
+<p>每次打开页面都会调用一次。</p>
+<p><strong>onReady：页面初次渲染完成</strong></p>
+<p>一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互。</p>
+<p>对界面的设置如 <code>wx.setNavigationBarTitle</code>请在 <code>onReady</code>之后设置。详见生命周期。</p>
+<p><strong>onHide：页面隐藏</strong></p>
+<p>当 <code>navigateTo</code>或底部tab切换时调用。</p>
+<p><strong>onUnload：页面卸载</strong></p>
+<p>当 <code>redirectTo</code>或 <code>navigateBack</code>的时候调用。</p>
+<h5 id="数据请求"><a href="#数据请求" class="headerlink" title="数据请求"></a>数据请求</h5><p>在页面加载请求数据时，两者钩子的使用有些类似，vue一般会在 <code>created</code>或者 <code>mounted</code>中请求数据，而在小程序，会在 <code>onLoad</code>或者 <code>onShow</code>中请求数据。</p>
+<h4 id="二、数据绑定"><a href="#二、数据绑定" class="headerlink" title="二、数据绑定"></a><strong>二、数据绑定</strong></h4><p>vue：vue动态绑定一个变量的值为元素的某个属性的时候，会在变量前面加上冒号：，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;imgSrc&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>小程序：绑定某个变量的值为元素属性时，会用两个大括号括起来，如果不加括号，为被认为是字符串。例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image src=&quot;&#123;&#123;imgSrc&#125;&#125;&quot;&gt;&lt;/image&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="三、列表渲染"><a href="#三、列表渲染" class="headerlink" title="三、列表渲染"></a><strong>三、列表渲染</strong></h4><p>直接贴代码，两者还是有些相似：</p>
+<p>vue：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;example-1&quot;&gt;  &lt;li v-for=&quot;item in items&quot;&gt;    &#123;&#123; item.message &#125;&#125;  &lt;/li&gt;&lt;/ul&gt;var example1 = new Vue(&#123;  el: &apos;#example-1&apos;,  data: &#123;    items: [      &#123; message: &apos;Foo&apos; &#125;,      &#123; message: &apos;Bar&apos; &#125;    ]  &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>小程序：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;  data: &#123;    items: [      &#123; message: &apos;Foo&apos; &#125;,      &#123; message: &apos;Bar&apos; &#125;    ]  &#125;&#125;)&lt;text wx:for=&quot;&#123;&#123;items&#125;&#125;&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/text&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="四、显示与隐藏元素"><a href="#四、显示与隐藏元素" class="headerlink" title="四、显示与隐藏元素"></a><strong>四、显示与隐藏元素</strong></h4><p>vue中，使用 <code>v-if</code> 和 <code>v-show</code>控制元素的显示和隐藏。</p>
+<p>小程序中，使用 <code>wx-if</code>和 <code>hidden</code>控制元素的显示和隐藏。</p>
+<h4 id="五、事件处理"><a href="#五、事件处理" class="headerlink" title="五、事件处理"></a><strong>五、事件处理</strong></h4><p>vue：使用 <code>v-on:event</code>绑定事件，或者使用 <code>@event</code>绑定事件，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button v-on:click=&quot;counter += 1&quot;&gt;Add 1&lt;/button&gt;&lt;button v-on:click.stop=&quot;counter+=1&quot;&gt;Add1&lt;/button&gt;  //阻止事件冒泡</span><br></pre></td></tr></table></figure>
+<p>小程序中，全用 <code>bindtap(bind+event)</code>，或者 <code>catchtap(catch+event)</code>绑定事件，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button bindtap=&quot;noWork&quot;&gt;明天不上班&lt;/button&gt;&lt;button catchtap=&quot;noWork&quot;&gt;明天不上班&lt;/button&gt;  //阻止事件冒泡</span><br></pre></td></tr></table></figure>
+<h4 id="六、数据双向绑定"><a href="#六、数据双向绑定" class="headerlink" title="六、数据双向绑定"></a><strong>六、数据双向绑定</strong></h4><h5 id="1、设置值"><a href="#1、设置值" class="headerlink" title="1、设置值"></a>1、设置值</h5><p>在vue中，只需要再表单元素上加上 <code>v-model</code>,然后再绑定 <code>data</code>中对应的一个值，当表单元素内容发生变化时， <code>data</code>中对应的值也会相应改变，这是vue非常nice的一点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;    &lt;input v-model=&quot;reason&quot; placeholder=&quot;填写理由&quot; class=&apos;reason&apos;/&gt;&lt;/div&gt;new Vue(&#123;  el: &apos;#app&apos;,  data: &#123;   reason:&apos;&apos;  &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p>但是在小程序中，却没有这个功能。那怎么办呢？</p>
+<p>当表单内容发生变化时，会触发表单元素上绑定的方法，然后在该方法中，通过 <code>this.setData({key:value})</code>来将表单上的值赋值给 <code>data</code>中的对应值。</p>
+<p>下面是代码，可以感受一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input bindinput=&quot;bindReason&quot; placeholder=&quot;填写理由&quot; class=&apos;reason&apos; value=&apos;&#123;&#123;reason&#125;&#125;&apos; name=&quot;reason&quot; /&gt;Page(&#123;data:&#123;    reason:&apos;&apos;&#125;,bindReason(e) &#123;    this.setData(&#123;      reason: e.detail.value    &#125;)  &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p>当页面表单元素很多的时候，更改值就是一件体力活了。和小程序一比较，vue的 <code>v-model</code>简直爽的不要不要的。</p>
+<h5 id="2、取值"><a href="#2、取值" class="headerlink" title="2、取值"></a>2、取值</h5><p>vue中，通过 <code>this.reason</code>取值。</p>
+<p>小程序中，通过 <code>this.data.reason</code>取值。</p>
+<p><strong>七、绑定事件传参</strong></p>
+<p>在vue中，绑定事件传参挺简单，只需要在触发事件的方法中，把需要传递的数据作为形参传入就可以了，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;say(&apos;明天不上班&apos;)&quot;&gt;&lt;/button&gt;new Vue(&#123;  el: &apos;#app&apos;,  methods:&#123;    say(arg)&#123;    consloe.log(arg)    &#125;  &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p>在 <code>小程序</code>中，不能直接在绑定事件的方法中传入参数，需要将参数作为属性值，绑定到元素上的 <code>data-</code>属性上，然后在方法中，通过 <code>e.currentTarget.dataset.*</code>的方式获取，从而完成参数的传递，很麻烦有没有…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&apos;tr&apos; bindtap=&apos;toApprove&apos; data-id=&quot;&#123;&#123;item.id&#125;&#125;&quot;&gt;&lt;/view&gt;Page(&#123;data:&#123;    reason:&apos;&apos;&#125;,toApprove(e) &#123;    let id = e.currentTarget.dataset.id;  &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="八、父子组件通信"><a href="#八、父子组件通信" class="headerlink" title="八、父子组件通信"></a><strong>八、父子组件通信</strong></h4><h5 id="1、子组件的使用"><a href="#1、子组件的使用" class="headerlink" title="1、子组件的使用"></a>1、子组件的使用</h5><p>在vue中，需要：</p>
+<p>1、编写子组件</p>
+<p>2、在需要使用的父组件中通过 <code>import</code>引入</p>
+<p>3、在 <code>vue</code>的 <code>components</code>中注册</p>
+<p>4、在模板中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//子组件 bar.vue&lt;template&gt;  &lt;div class=&quot;search-box&quot;&gt;    &lt;div @click=&quot;say&quot; :title=&quot;title&quot; class=&quot;icon-dismiss&quot;&gt;&lt;/div&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default&#123;props:&#123;    title:&#123;       type:String,       default:&apos;&apos;      &#125;    &#125;&#125;,methods:&#123;    say()&#123;       console.log(&apos;明天不上班&apos;);       this.$emit(&apos;helloWorld&apos;)    &#125;&#125;&lt;/script&gt;// 父组件 foo.vue&lt;template&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;bar :title=&quot;title&quot; @helloWorld=&quot;helloWorld&quot;&gt;&lt;/bar&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;import Bar from &apos;./bar.vue&apos;export default&#123;data:&#123;    title:&quot;我是标题&quot;&#125;,methods:&#123;    helloWorld()&#123;        console.log(&apos;我接收到子组件传递的事件了&apos;)    &#125;&#125;,components:&#123;    Bar&#125;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>在小程序中，需要： 1、编写子组件 2、在子组件的 <code>json</code>文件中，将该文件声明为组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;      &quot;component&quot;: true    &#125;</span><br></pre></td></tr></table></figure>
+<p>3、在需要引入的父组件的 <code>json</code>文件中，在 <code>usingComponents</code>填写引入组件的组件名以及路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;        &quot;tab-bar&quot;: &quot;../../components/tabBar/tabBar&quot;      &#125;</span><br></pre></td></tr></table></figure>
+<p>4、在父组件中，直接引入即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tab-bar currentpage=&quot;index&quot;&gt;&lt;/tab-bar&gt;</span><br></pre></td></tr></table></figure>
+<p>具体代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 子组件    &lt;!--components/tabBar/tabBar.wxml--&gt;    &lt;view class=&apos;tabbar-wrapper&apos;&gt;      &lt;view class=&apos;left-bar &#123;&#123;currentpage===&quot;index&quot;?&quot;active&quot;:&quot;&quot;&#125;&#125;&apos; bindtap=&apos;jumpToIndex&apos;&gt;        &lt;text class=&apos;iconfont icon-shouye&apos;&gt;&lt;/text&gt;        &lt;view&gt;首页&lt;/view&gt;      &lt;/view&gt;      &lt;view class=&apos;right-bar &#123;&#123;currentpage===&quot;setting&quot;?&quot;active&quot;:&quot;&quot;&#125;&#125;&apos; bindtap=&apos;jumpToSetting&apos;&gt;        &lt;text class=&apos;iconfont icon-shezhi&apos;&gt;&lt;/text&gt;        &lt;view&gt;设置&lt;/view&gt;      &lt;/view&gt;    &lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="2、父子组件间通信"><a href="#2、父子组件间通信" class="headerlink" title="2、父子组件间通信"></a>2、父子组件间通信</h5><p><strong>在vue中</strong></p>
+<p>父组件向子组件传递数据，只需要在子组件通过 <code>v-bind</code>传入一个值，在子组件中，通过 <code>props</code>接收，即可完成数据的传递，示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 父组件 foo.vue&lt;template&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;bar :title=&quot;title&quot;&gt;&lt;/bar&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;import Bar from &apos;./bar.vue&apos;export default&#123;data:&#123;    title:&quot;我是标题&quot;&#125;,components:&#123;    Bar&#125;&lt;/script&gt;// 子组件bar.vue&lt;template&gt;  &lt;div class=&quot;search-box&quot;&gt;    &lt;div :title=&quot;title&quot; &gt;&lt;/div&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default&#123;props:&#123;    title:&#123;       type:String,       default:&apos;&apos;      &#125;    &#125;&#125;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>子组件和父组件通信可以通过 <code>this.$emit</code>将方法和数据传递给父组件。</p>
+<p><strong>在小程序中</strong></p>
+<p>父组件向子组件通信和vue类似，但是小程序没有通过 <code>v-bind</code>，而是直接将值赋值给一个变量，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tab-bar currentpage=&quot;index&quot;&gt;&lt;/tab-bar&gt;</span><br></pre></td></tr></table></figure>
+<p>此处， “index”就是要向子组件传递的值。</p>
+<p>在子组件 <code>properties</code>中，接收传递的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">properties: &#123;    // 弹窗标题    currentpage: &#123;            // 属性名      type: String,     // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）      value: &apos;index&apos;     // 属性初始值（可选），如果未指定则会根据类型选择一个    &#125;  &#125;</span><br></pre></td></tr></table></figure>
+<p>子组件向父组件通信和 <code>vue</code>也很类似，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//子组件中methods: &#123;       // 传递给父组件    cancelBut: function (e) &#123;      var that = this;      var myEventDetail = &#123; pickerShow: false, type: &apos;cancel&apos; &#125; // detail对象，提供给事件监听函数      this.triggerEvent(&apos;myevent&apos;, myEventDetail) //myevent自定义名称事件，父组件中使用    &#125;,&#125;//父组件中&lt;bar bind:myevent=&quot;toggleToast&quot;&gt;&lt;/bar&gt;// 获取子组件信息toggleToast(e)&#123;    console.log(e.detail)&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="如果父组件想要调用子组件的方法"><a href="#如果父组件想要调用子组件的方法" class="headerlink" title="如果父组件想要调用子组件的方法"></a>如果父组件想要调用子组件的方法</h5><p>vue会给子组件添加一个 <code>ref</code>属性，通过 <code>this.$refs.ref的值</code>便可以获取到该子组件，然后便可以调用子组件中的任意方法，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//子组件&lt;bar ref=&quot;bar&quot;&gt;&lt;/bar&gt;//父组件this.$ref.bar.子组件的方法</span><br></pre></td></tr></table></figure>
+<p><code>小程序</code>是给子组件添加 <code>id</code>或者 <code>class</code>，然后通过 <code>this.selectComponent</code>找到子组件，然后再调用子组件的方法,示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//子组件&lt;bar id=&quot;bar&quot;&gt;&lt;/bar&gt;// 父组件this.selectComponent(&apos;#id&apos;).syaHello()</span><br></pre></td></tr></table></figure>
+<p>小程序和vue在这点上还是很相似的。</p>
+<p>好了，关于微信小程序和VUE的对比就写到这里，未来微信小程序会越来越好，应用到更多成熟的技术。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>XiaoRI</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/08/04/Vue和微信小程序的区别和比较/" target="_blank" title="Vue和微信小程序的区别和比较">http://yoursite.com/2018/08/04/Vue和微信小程序的区别和比较/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/04/framework7学习总结-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">framework7学习总结-2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、生命周期"><span class="nav-number">2.</span> <span class="nav-text">一、生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue生命周期"><span class="nav-number">2.1.</span> <span class="nav-text">vue生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小程序生命周期"><span class="nav-number">2.2.</span> <span class="nav-text">小程序生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据请求"><span class="nav-number">2.3.</span> <span class="nav-text">数据请求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、数据绑定"><span class="nav-number">3.</span> <span class="nav-text">二、数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、列表渲染"><span class="nav-number">4.</span> <span class="nav-text">三、列表渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、显示与隐藏元素"><span class="nav-number">5.</span> <span class="nav-text">四、显示与隐藏元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、事件处理"><span class="nav-number">6.</span> <span class="nav-text">五、事件处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、数据双向绑定"><span class="nav-number">7.</span> <span class="nav-text">六、数据双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、设置值"><span class="nav-number">7.1.</span> <span class="nav-text">1、设置值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、取值"><span class="nav-number">7.2.</span> <span class="nav-text">2、取值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、父子组件通信"><span class="nav-number">8.</span> <span class="nav-text">八、父子组件通信</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、子组件的使用"><span class="nav-number">8.1.</span> <span class="nav-text">1、子组件的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、父子组件间通信"><span class="nav-number">8.2.</span> <span class="nav-text">2、父子组件间通信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果父组件想要调用子组件的方法"><span class="nav-number">8.3.</span> <span class="nav-text">如果父组件想要调用子组件的方法</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 小日的博客 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            小日的博客
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 XiaoRI All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
