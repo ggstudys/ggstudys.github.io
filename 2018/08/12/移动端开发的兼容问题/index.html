@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="小日的博客">
 <meta property="og:description" content="前言这里总结一下移动端开发在android和ios不同情况下会遇到的兼容问题~后期陆续跟新补上 示例1、ios下input设置type=button属性disabled设置true,会出现样式文字和背景异常问题，使用opacity=1来解决 2、一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发，css增加cursor:pointer就搞定了 3、1px边框问题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-12T10:47:28.622Z">
+<meta property="og:updated_time" content="2018-08-12T13:33:48.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端开发的兼容问题">
 <meta name="twitter:description" content="前言这里总结一下移动端开发在android和ios不同情况下会遇到的兼容问题~后期陆续跟新补上 示例1、ios下input设置type=button属性disabled设置true,会出现样式文字和背景异常问题，使用opacity=1来解决 2、一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发，css增加cursor:pointer就搞定了 3、1px边框问题">
@@ -204,10 +204,30 @@
 <p>8、click 300ms 延时响应 使用 Fastclick<br>window.addEventListener( “load”, function() {<br>FastClick.attach( document.body );<br>}, false );</p>
 <p>9、input 有placeholder情况下不要设置行高，否则会偏上</p>
 <p>10、移动端适配可以使用lib-flexible</p>
-<p>### </p>
-<p>### </p>
-<p>### </p>
-<p>### </p>
+<h3 id="CSS伪类-active"><a href="#CSS伪类-active" class="headerlink" title="CSS伪类:active"></a>CSS伪类:active</h3><p>如果你想使用元素的伪类来实现 <code>按下激活</code> 状态，那么你需要知道以下问题：</p>
+<ul>
+<li>iOS上的几乎任何浏览器，定义元素的伪类 <code>:active</code> 都是无效；</li>
+<li>Android上，<code>Android Browser</code> 和 <code>Chrome</code> 都支持伪类 <code>:active</code> ，其它第三方浏览器有部分不支持；</li>
+<li>定义了 <code>:active</code> 并且当前浏览器环境支持，当手指在滚动或者无意间的划过时，<code>:active</code> 状态都会被激活；</li>
+</ul>
+<blockquote>
+<p>为了规避上述所有的问题，如果需要 <code>按下激活</code> 状态，推荐使用 <code>js</code> 新增一个 <code>className</code></p>
+</blockquote>
+<h3 id="清除输入框内阴影"><a href="#清除输入框内阴影" class="headerlink" title="清除输入框内阴影"></a>清除输入框内阴影</h3><p>iOS上的几乎任何浏览器输入框（input, textarea）默认有内部阴影，但无法使用 <code>box-shadow</code> 来清除，如果不需要阴影，可以这样关闭：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input,</span><br><span class="line">textarea &#123;</span><br><span class="line">	/* 方法1: 去掉边框 */</span><br><span class="line">	border: 0;</span><br><span class="line"></span><br><span class="line">	/* 方法2: 边框色透明 */</span><br><span class="line">	border-color: transparent;</span><br><span class="line"></span><br><span class="line">	/* 方法3: 重置输入框默认外观 */</span><br><span class="line">	-webkit-appearance: none;</span><br><span class="line">	appearance: none;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<h3 id="修正iOS输入框禁用文本色"><a href="#修正iOS输入框禁用文本色" class="headerlink" title="修正iOS输入框禁用文本色"></a>修正iOS输入框禁用文本色</h3><p>在 <code>iOS</code> 上，如果将输入框 <code>disabled</code>，此时输入框内的文字颜色将比 <code>color</code> 所定义的要浅，并且无法通过给输入框的伪类 <code>:disabled</code> 定义 <code>color</code> 来修正。</p>
+<p>想解决这个问题，可以作如下设置，定义输入框的文本填充色：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input:disabled &#123;</span><br><span class="line">	-webkit-text-fill-color: #000;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，在 <code>Mac</code> 上的 <code>Safari</code> 也有同样的问题。</p>
+<h3 id="Samsung-S4圆角Bug"><a href="#Samsung-S4圆角Bug" class="headerlink" title="Samsung S4圆角Bug"></a>Samsung S4圆角Bug</h3><p><code>Samsung S4</code> 手机在 <code>Android Browser4.4.2</code> 上（其他版本未测），如果你使用了 <code>border-radius</code>，并且使用了 <code>-webkit-transform</code> 属性，当使用了 <code>translatez</code> 或者 <code>translate3d</code> 值，圆角会出现问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.test &#123;</span><br><span class="line">	border: 2px solid red;</span><br><span class="line">	width: 50px;</span><br><span class="line">	height: 50px;</span><br><span class="line">	border-radius: 50%;</span><br><span class="line">	background-color: gray;</span><br><span class="line">	box-shadow: 0 2px 5px rgba(0, 0, 0, .3);</span><br><span class="line">	-webkit-transform: translate(0, 0) translatez(0);</span><br><span class="line">	transform: translate(0, 0) translatez(0);</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;test&quot;&gt;&lt;/div&gt;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>如上代码，<code>-webkit-transform: translate(0, 0) translatez(0)</code> 将会导致圆角无法包裹住 <code>background-color</code>。</p>
+<p>当然，<code>-webkit-transform: translate3d(0, 0, 0)</code> 也是一样的，所以如果你的某个场景是这样的，那么可以直接使用 <code>-webkit-transform: translate(0, 0)</code> 来避免这个问题。</p>
+<h3 id="边框圆角致背景溢出"><a href="#边框圆角致背景溢出" class="headerlink" title="边框圆角致背景溢出"></a>边框圆角致背景溢出</h3><p>在红米和OPPO等手机某些版本的 <code>Android Webview</code> 中，如果一个元素定义了 <code>border</code> + <code>border-radius</code>，这时如果该元素有背景，那么背景将会溢出圆角之外。</p>
+<p>之所以会出现这个问题：其主要原因是因为CSS对背景裁剪（background-clip）有不同的处理方式，通常它可以是 <code>border-box | padding-box | content-box</code> 这3种方式。</p>
+<p>浏览器的默认裁减方式是 <code>border-box</code>，即溢出 <code>border</code> 之外的背景都将被裁减。</p>
+<p>对于上述无法裁减边框之外背景的手机，将值定义为 <code>padding-box | content-box</code> 都能fix这问题，不过更推荐使用 <code>padding-box</code>。因为使用 <code>content-box</code>，如果定义了 <code>padding</code> 不为 <code>0</code>，背景将无法铺满元素。</p>
 
       
     </div>
@@ -297,7 +317,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS伪类-active"><span class="nav-number">3.</span> <span class="nav-text">CSS伪类:active</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除输入框内阴影"><span class="nav-number">4.</span> <span class="nav-text">清除输入框内阴影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修正iOS输入框禁用文本色"><span class="nav-number">5.</span> <span class="nav-text">修正iOS输入框禁用文本色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Samsung-S4圆角Bug"><span class="nav-number">6.</span> <span class="nav-text">Samsung S4圆角Bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边框圆角致背景溢出"><span class="nav-number">7.</span> <span class="nav-text">边框圆角致背景溢出</span></a></li></ol>
     
     </div>
   </aside>
