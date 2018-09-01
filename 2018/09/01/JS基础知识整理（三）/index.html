@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言前面介绍了JS中变量和对象的概念，这篇内容将描述JS实际的组成和一些核心操作。 JS由三部分组成ECMAScript: (3/5/6/7)它是JS语言的标准,规定了JS的编程语法和基础核心知识 DOM: document object model 文档对象模型,提供给JS很多操作页面中元素的属性和方法 BOM: browser object model 浏览器对象模型 ,提供了很多操作浏览器">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础知识整理（三）">
+<meta property="og:url" content="http://yoursite.com/2018/09/01/JS基础知识整理（三）/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言前面介绍了JS中变量和对象的概念，这篇内容将描述JS实际的组成和一些核心操作。 JS由三部分组成ECMAScript: (3/5/6/7)它是JS语言的标准,规定了JS的编程语法和基础核心知识 DOM: document object model 文档对象模型,提供给JS很多操作页面中元素的属性和方法 BOM: browser object model 浏览器对象模型 ,提供了很多操作浏览器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.w3cschool.cn/attachments/cover/cover_ecmascript.png">
+<meta property="og:updated_time" content="2018-09-01T05:13:57.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS基础知识整理（三）">
+<meta name="twitter:description" content="引言前面介绍了JS中变量和对象的概念，这篇内容将描述JS实际的组成和一些核心操作。 JS由三部分组成ECMAScript: (3/5/6/7)它是JS语言的标准,规定了JS的编程语法和基础核心知识 DOM: document object model 文档对象模型,提供给JS很多操作页面中元素的属性和方法 BOM: browser object model 浏览器对象模型 ,提供了很多操作浏览器">
+<meta name="twitter:image" content="https://www.w3cschool.cn/attachments/cover/cover_ecmascript.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/01/JS基础知识整理（三）/"/>
+
+
+
+
+
+  <title>JS基础知识整理（三） | 小日的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小日的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/JS基础知识整理（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XiaoRI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小日的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS基础知识整理（三）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T11:48:17+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>前面介绍了JS中变量和对象的概念，这篇内容将描述JS实际的组成和一些核心操作。</p>
+<h3 id="JS由三部分组成"><a href="#JS由三部分组成" class="headerlink" title="JS由三部分组成"></a>JS由三部分组成</h3><p>ECMAScript: (3/5/6/7)它是JS语言的标准,规定了JS的编程语法和基础核心知识</p>
+<p>DOM: document object model 文档对象模型,提供给JS很多操作页面中元素的属性和方法</p>
+<p>BOM: browser object model 浏览器对象模型 ,提供了很多操作浏览器 的属性方法,而这些方法都存放在window浏览器对象上</p>
+<h3 id="ECMAScript-ES"><a href="#ECMAScript-ES" class="headerlink" title="ECMAScript(ES)"></a>ECMAScript(ES)</h3><p><a href="https://www.w3cschool.cn/ecmascript" target="_blank" rel="noopener"><img src="https://www.w3cschool.cn/attachments/cover/cover_ecmascript.png" alt="ECMAScript教程"></a></p>
+<p>ECMAScript是一种由Ecma国际(前身为欧洲计算机制造商协会,英文名称是European Computer Manufacturers Association)通过ECMA-262标准化的脚本程序设计语言。现在貌似已经更新到ES7了都，不过工作中其实用的最多的还是ES5和ES6的写法，后面可以单独抽出一篇讲讲ES6的一些新特性，这里不展开讨论。</p>
+<h3 id="BOM及其组成"><a href="#BOM及其组成" class="headerlink" title="BOM及其组成"></a>BOM及其组成</h3><p>BOM其实就是浏览器对象模型，提供了一些操作浏览器对象的属性和方法，接下来将一个一个走近他们。</p>
+<h4 id="Window对象"><a href="#Window对象" class="headerlink" title="Window对象"></a>Window对象</h4><p>window对象一般作为浏览器的顶层对象，其下又包括document,history,location,navigator,screen对象。</p>
+<p>Window 对象表示浏览器中打开的窗口。 如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对 象，并为每个框架创建一个额外的 window 对象。 注释：没有应用于 window 对象的公开标准，不过所有浏览器都支持该对象。 </p>
+<h5 id="window对象属性"><a href="#window对象属性" class="headerlink" title="window对象属性"></a>window对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_closed.asp" target="_blank" rel="noopener">closed</a></td>
+<td>返回窗口是否已被关闭。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_defaultstatus.asp" target="_blank" rel="noopener">defaultStatus</a></td>
+<td>设置或返回窗口状态栏中的默认文本。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/dom_obj_document.asp" target="_blank" rel="noopener">document</a></td>
+<td>对 Document 对象的只读引用。请参阅 <a href="http://www.w3school.com.cn/jsref/dom_obj_document.asp" target="_blank" rel="noopener">Document 对象</a>。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/dom_obj_history.asp" target="_blank" rel="noopener">history</a></td>
+<td>对 History 对象的只读引用。请参数 <a href="http://www.w3school.com.cn/jsref/dom_obj_history.asp" target="_blank" rel="noopener">History 对象</a>。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_innerheight_innerwidth.asp" target="_blank" rel="noopener">innerheight</a></td>
+<td>返回窗口的文档显示区的高度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_innerheight_innerwidth.asp" target="_blank" rel="noopener">innerwidth</a></td>
+<td>返回窗口的文档显示区的宽度。</td>
+</tr>
+<tr>
+<td>length</td>
+<td>设置或返回窗口中的框架数量。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/dom_obj_location.asp" target="_blank" rel="noopener">location</a></td>
+<td>用于窗口或框架的 Location 对象。请参阅 <a href="http://www.w3school.com.cn/jsref/dom_obj_location.asp" target="_blank" rel="noopener">Location 对象</a>。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_name.asp" target="_blank" rel="noopener">name</a></td>
+<td>设置或返回窗口的名称。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/dom_obj_navigator.asp" target="_blank" rel="noopener">Navigator</a></td>
+<td>对 Navigator 对象的只读引用。请参数 <a href="http://www.w3school.com.cn/jsref/dom_obj_navigator.asp" target="_blank" rel="noopener">Navigator 对象</a>。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_opener.asp" target="_blank" rel="noopener">opener</a></td>
+<td>返回对创建此窗口的窗口的引用。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_outerheight.asp" target="_blank" rel="noopener">outerheight</a></td>
+<td>返回窗口的外部高度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_outerwidth.asp" target="_blank" rel="noopener">outerwidth</a></td>
+<td>返回窗口的外部宽度。</td>
+</tr>
+<tr>
+<td>pageXOffset</td>
+<td>设置或返回当前页面相对于窗口显示区左上角的 X 位置。</td>
+</tr>
+<tr>
+<td>pageYOffset</td>
+<td>设置或返回当前页面相对于窗口显示区左上角的 Y 位置。</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>返回父窗口。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/dom_obj_screen.asp" target="_blank" rel="noopener">Screen</a></td>
+<td>对 Screen 对象的只读引用。请参数 <a href="http://www.w3school.com.cn/jsref/dom_obj_screen.asp" target="_blank" rel="noopener">Screen 对象</a>。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_self.asp" target="_blank" rel="noopener">self</a></td>
+<td>返回对当前窗口的引用。等价于 Window 属性。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_status.asp" target="_blank" rel="noopener">status</a></td>
+<td>设置窗口状态栏的文本。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_win_top.asp" target="_blank" rel="noopener">top</a></td>
+<td>返回最顶层的先辈窗口。</td>
+</tr>
+<tr>
+<td>window</td>
+<td>window 属性等价于 self 属性，它包含了对窗口自身的引用。</td>
+</tr>
+<tr>
+<td>screenLeftscreenTopscreenXscreenY</td>
+<td>只读整数。声明了窗口的左上角在屏幕上的的 x 坐标和 y 坐标。IE、Safari 和 Opera 支持 screenLeft 和 screenTop，而 Firefox 和 Safari 支持 screenX 和 screenY。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Window-对象方法"><a href="#Window-对象方法" class="headerlink" title="Window 对象方法"></a>Window 对象方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_alert.asp" target="_blank" rel="noopener">alert()</a></td>
+<td>显示带有一段消息和一个确认按钮的警告框。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_blur.asp" target="_blank" rel="noopener">blur()</a></td>
+<td>把键盘焦点从顶层窗口移开。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_clearinterval.asp" target="_blank" rel="noopener">clearInterval()</a></td>
+<td>取消由 setInterval() 设置的 timeout。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_cleartimeout.asp" target="_blank" rel="noopener">clearTimeout()</a></td>
+<td>取消由 setTimeout() 方法设置的 timeout。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_close.asp" target="_blank" rel="noopener">close()</a></td>
+<td>关闭浏览器窗口。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_confirm.asp" target="_blank" rel="noopener">confirm()</a></td>
+<td>显示带有一段消息以及确认按钮和取消按钮的对话框。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_createpopup.asp" target="_blank" rel="noopener">createPopup()</a></td>
+<td>创建一个 pop-up 窗口。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_focus.asp" target="_blank" rel="noopener">focus()</a></td>
+<td>把键盘焦点给予一个窗口。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_moveby.asp" target="_blank" rel="noopener">moveBy()</a></td>
+<td>可相对窗口的当前坐标把它移动指定的像素。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_moveto.asp" target="_blank" rel="noopener">moveTo()</a></td>
+<td>把窗口的左上角移动到一个指定的坐标。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_open.asp" target="_blank" rel="noopener">open()</a></td>
+<td>打开一个新的浏览器窗口或查找一个已命名的窗口。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_print.asp" target="_blank" rel="noopener">print()</a></td>
+<td>打印当前窗口的内容。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_prompt.asp" target="_blank" rel="noopener">prompt()</a></td>
+<td>显示可提示用户输入的对话框。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_resizeby.asp" target="_blank" rel="noopener">resizeBy()</a></td>
+<td>按照指定的像素调整窗口的大小。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_resizeto.asp" target="_blank" rel="noopener">resizeTo()</a></td>
+<td>把窗口的大小调整到指定的宽度和高度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_scrollby.asp" target="_blank" rel="noopener">scrollBy()</a></td>
+<td>按照指定的像素值来滚动内容。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_scrollto.asp" target="_blank" rel="noopener">scrollTo()</a></td>
+<td>把内容滚动到指定的坐标。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_setinterval.asp" target="_blank" rel="noopener">setInterval()</a></td>
+<td>按照指定的周期（以毫秒计）来调用函数或计算表达式。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_win_settimeout.asp" target="_blank" rel="noopener">setTimeout()</a></td>
+<td>在指定的毫秒数后调用函数或计算表达式。</td>
+</tr>
+</tbody>
+</table>
+<p>一般来说，Window 对象的方法都是对浏览器窗口或框架进行某种操作。而 <a href="http://www.w3school.com.cn/jsref/met_win_alert.asp" target="_blank" rel="noopener">alert() 方法</a>、<a href="http://www.w3school.com.cn/jsref/met_win_confirm.asp" target="_blank" rel="noopener">confirm() 方法</a>和 <a href="http://www.w3school.com.cn/jsref/met_win_prompt.asp" target="_blank" rel="noopener">prompt 方法</a>则不同，它们通过简单的对话框与用户进行交互。 </p>
+<h4 id="Navigator对象"><a href="#Navigator对象" class="headerlink" title="Navigator对象"></a>Navigator对象</h4><p>Navigator 对象包含有关浏览器的信息。</p>
+<p>注释：没有应用于 navigator 对象的公开标准，不过所有浏览器都支持该对象。</p>
+<h5 id="Navigator-对象属性"><a href="#Navigator-对象属性" class="headerlink" title="Navigator 对象属性"></a>Navigator 对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_appcodename.asp" target="_blank" rel="noopener">appCodeName</a></td>
+<td>返回浏览器的代码名。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_appminorversion.asp" target="_blank" rel="noopener">appMinorVersion</a></td>
+<td>返回浏览器的次级版本。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_appname.asp" target="_blank" rel="noopener">appName</a></td>
+<td>返回浏览器的名称。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_appversion.asp" target="_blank" rel="noopener">appVersion</a></td>
+<td>返回浏览器的平台和版本信息。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_browserlanguage.asp" target="_blank" rel="noopener">browserLanguage</a></td>
+<td>返回当前浏览器的语言。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_cookieenabled.asp" target="_blank" rel="noopener">cookieEnabled</a></td>
+<td>返回指明浏览器中是否启用 cookie 的布尔值。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_cpuclass.asp" target="_blank" rel="noopener">cpuClass</a></td>
+<td>返回浏览器系统的 CPU 等级。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_online.asp" target="_blank" rel="noopener">onLine</a></td>
+<td>返回指明系统是否处于脱机模式的布尔值。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_platform.asp" target="_blank" rel="noopener">platform</a></td>
+<td>返回运行浏览器的操作系统平台。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_systemlanguage.asp" target="_blank" rel="noopener">systemLanguage</a></td>
+<td>返回 OS 使用的默认语言。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_useragent.asp" target="_blank" rel="noopener">userAgent</a></td>
+<td>返回由客户机发送服务器的 user-agent 头部的值。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_nav_userlanguage.asp" target="_blank" rel="noopener">userLanguage</a></td>
+<td>返回 OS 的自然语言设置。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Navigator-对象方法"><a href="#Navigator-对象方法" class="headerlink" title="Navigator 对象方法"></a>Navigator 对象方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_nav_javaenabled.asp" target="_blank" rel="noopener">javaEnabled()</a></td>
+<td>规定浏览器是否启用 Java。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_nav_taintenabled.asp" target="_blank" rel="noopener">taintEnabled()</a></td>
+<td>规定浏览器是否启用数据污点 (data tainting)。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Navigator对象描述"><a href="#Navigator对象描述" class="headerlink" title="Navigator对象描述"></a>Navigator对象描述</h5><p>Navigator 对象包含的属性描述了正在使用的浏览器。可以使用这些属性进行平台专用的配置。</p>
+<p>虽然这个对象的名称显而易见的是 Netscape 的 Navigator 浏览器，但其他实现了 JavaScript 的浏览器也支持这个对象。</p>
+<p>Navigator 对象的实例是唯一的，可以用 Window 对象的 navigator 属性来引用它。</p>
+<h4 id="Location对象"><a href="#Location对象" class="headerlink" title="Location对象"></a>Location对象</h4><p>Location 对象包含有关当前 URL 的信息。</p>
+<p>Location 对象是 Window 对象的一个部分，可通过 window.location 属性来访问。</p>
+<h5 id="Location-对象属性"><a href="#Location-对象属性" class="headerlink" title="Location 对象属性"></a>Location 对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_hash.asp" target="_blank" rel="noopener">hash</a></td>
+<td>设置或返回从井号 (#) 开始的 URL（锚）。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_host.asp" target="_blank" rel="noopener">host</a></td>
+<td>设置或返回主机名和当前 URL 的端口号。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_hostname.asp" target="_blank" rel="noopener">hostname</a></td>
+<td>设置或返回当前 URL 的主机名。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_href.asp" target="_blank" rel="noopener">href</a></td>
+<td>设置或返回完整的 URL。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_pathname.asp" target="_blank" rel="noopener">pathname</a></td>
+<td>设置或返回当前 URL 的路径部分。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_port.asp" target="_blank" rel="noopener">port</a></td>
+<td>设置或返回当前 URL 的端口号。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_protocol.asp" target="_blank" rel="noopener">protocol</a></td>
+<td>设置或返回当前 URL 的协议。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_loc_search.asp" target="_blank" rel="noopener">search</a></td>
+<td>设置或返回从问号 (?) 开始的 URL（查询部分）。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Location-对象方法"><a href="#Location-对象方法" class="headerlink" title="Location 对象方法"></a>Location 对象方法</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_loc_assign.asp" target="_blank" rel="noopener">assign()</a></td>
+<td>加载新的文档。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_loc_reload.asp" target="_blank" rel="noopener">reload()</a></td>
+<td>重新加载当前文档。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_loc_replace.asp" target="_blank" rel="noopener">replace()</a></td>
+<td>用新的文档替换当前文档。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Location-对象描述"><a href="#Location-对象描述" class="headerlink" title="Location 对象描述"></a>Location 对象描述</h5><p>Location 对象存储在 Window 对象的 Location 属性中，表示那个窗口中当前显示的文档的 Web 地址。它的 <a href="http://www.w3school.com.cn/jsref/prop_loc_href.asp" target="_blank" rel="noopener">href 属性</a>存放的是文档的完整 URL，其他属性则分别描述了 URL 的各个部分。这些属性与 Anchor 对象（或 Area 对象）的 URL 属性非常相似。当一个 Location 对象被转换成字符串，href 属性的值被返回。这意味着你可以使用表达式 location 来替代 location.href。</p>
+<p>不过 Anchor 对象表示的是文档中的超链接，Location 对象表示的却是浏览器当前显示的文档的 URL（或位置）。但是 Location 对象所能做的远远不止这些，它还能控制浏览器显示的文档的位置。如果把一个含有 URL 的字符串赋予 Location 对象或它的 href 属性，浏览器就会把新的 URL 所指的文档装载进来，并显示出来。</p>
+<p>除了设置 location 或 location.href 用完整的 URL 替换当前的 URL 之外，还可以修改部分 URL，只需要给 Location 对象的其他属性赋值即可。这样做就会创建新的 URL，其中的一部分与原来的 URL 不同，浏览器会将它装载并显示出来。例如，假设设置了Location对象的 <a href="http://www.w3school.com.cn/jsref/prop_loc_hash.asp" target="_blank" rel="noopener">hash 属性</a>，那么浏览器就会转移到当前文档中的一个指定的位置。同样，如果设置了 <a href="http://www.w3school.com.cn/jsref/prop_loc_search.asp" target="_blank" rel="noopener">search 属性</a>，那么浏览器就会重新装载附加了新的查询字符串的 URL。</p>
+<p>除了 URL 属性外，Location 对象的 <a href="http://www.w3school.com.cn/jsref/met_loc_reload.asp" target="_blank" rel="noopener">reload() 方法</a>可以重新装载当前文档，<a href="http://www.w3school.com.cn/jsref/met_loc_replace.asp" target="_blank" rel="noopener">replace()</a> 可以装载一个新文档而无须为它创建一个新的历史记录，也就是说，在浏览器的历史列表中，新文档将替换当前文档。</p>
+<h4 id="History对象"><a href="#History对象" class="headerlink" title="History对象"></a>History对象</h4><p>History 对象包含用户（在浏览器窗口中）访问过的 URL。</p>
+<p>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。</p>
+<p>注释：没有应用于 History 对象的公开标准，不过所有浏览器都支持该对象。</p>
+<h5 id="History-对象属性"><a href="#History-对象属性" class="headerlink" title="History 对象属性"></a>History 对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_his_length.asp" target="_blank" rel="noopener">length</a></td>
+<td>返回浏览器历史列表中的 URL 数量。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="History-对象方法"><a href="#History-对象方法" class="headerlink" title="History 对象方法"></a>History 对象方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_his_back.asp" target="_blank" rel="noopener">back()</a></td>
+<td>加载 history 列表中的前一个 URL。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_his_forward.asp" target="_blank" rel="noopener">forward()</a></td>
+<td>加载 history 列表中的下一个 URL。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_his_go.asp" target="_blank" rel="noopener">go()</a></td>
+<td>加载 history 列表中的某个具体页面。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="History-对象描述"><a href="#History-对象描述" class="headerlink" title="History 对象描述"></a>History 对象描述</h5><p>History 对象最初设计来表示窗口的浏览历史。但出于隐私方面的原因，History 对象不再允许脚本访问已经访问过的实际 URL。唯一保持使用的功能只有 <a href="http://www.w3school.com.cn/jsref/met_his_back.asp" target="_blank" rel="noopener">back()</a>、<a href="http://www.w3school.com.cn/jsref/met_his_forward.asp" target="_blank" rel="noopener">forward()</a> 和 <a href="http://www.w3school.com.cn/jsref/met_his_go.asp" target="_blank" rel="noopener">go()</a> 方法。</p>
+<h4 id="Screen对象"><a href="#Screen对象" class="headerlink" title="Screen对象"></a>Screen对象</h4><p>Screen 对象包含有关客户端显示屏幕的信息。</p>
+<p>注释：没有应用于 screen 对象的公开标准，不过所有浏览器都支持该对象。</p>
+<h5 id="Screen-对象属性"><a href="#Screen-对象属性" class="headerlink" title="Screen 对象属性"></a>Screen 对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_availheight.asp" target="_blank" rel="noopener">availHeight</a></td>
+<td>返回显示屏幕的高度 (除 Windows 任务栏之外)。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_availwidth.asp" target="_blank" rel="noopener">availWidth</a></td>
+<td>返回显示屏幕的宽度 (除 Windows 任务栏之外)。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_bufferdepth.asp" target="_blank" rel="noopener">bufferDepth</a></td>
+<td>设置或返回调色板的比特深度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_colordepth.asp" target="_blank" rel="noopener">colorDepth</a></td>
+<td>返回目标设备或缓冲器上的调色板的比特深度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_devicexdpi.asp" target="_blank" rel="noopener">deviceXDPI</a></td>
+<td>返回显示屏幕的每英寸水平点数。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_deviceydpi.asp" target="_blank" rel="noopener">deviceYDPI</a></td>
+<td>返回显示屏幕的每英寸垂直点数。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_fontsmoothingenabled.asp" target="_blank" rel="noopener">fontSmoothingEnabled</a></td>
+<td>返回用户是否在显示控制面板中启用了字体平滑。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_height.asp" target="_blank" rel="noopener">height</a></td>
+<td>返回显示屏幕的高度。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_logicalxdpi.asp" target="_blank" rel="noopener">logicalXDPI</a></td>
+<td>返回显示屏幕每英寸的水平方向的常规点数。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_logicalydpi.asp" target="_blank" rel="noopener">logicalYDPI</a></td>
+<td>返回显示屏幕每英寸的垂直方向的常规点数。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_pixeldepth.asp" target="_blank" rel="noopener">pixelDepth</a></td>
+<td>返回显示屏幕的颜色分辨率（比特每像素）。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_updateinterval.asp" target="_blank" rel="noopener">updateInterval</a></td>
+<td>设置或返回屏幕的刷新率。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_screen_width.asp" target="_blank" rel="noopener">width</a></td>
+<td>返回显示器屏幕的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Screen-对象描述"><a href="#Screen-对象描述" class="headerlink" title="Screen 对象描述"></a>Screen 对象描述</h5><p>每个 Window 对象的 screen 属性都引用一个 Screen 对象。Screen 对象中存放着有关显示浏览器屏幕的信息。JavaScript 程序将利用这些信息来优化它们的输出，以达到用户的显示要求。例如，一个程序可以根据显示器的尺寸选择使用大图像还是使用小图像，它还可以根据显示器的颜色深度选择使用 16 位色还是使用 8 位色的图形。另外，JavaScript 程序还能根据有关屏幕尺寸的信息将新的浏览器窗口定位在屏幕中间。</p>
+<h4 id="DOM-Document"><a href="#DOM-Document" class="headerlink" title="DOM Document"></a>DOM Document</h4><p>每个载入浏览器的 HTML 文档都会成为 Document 对象。</p>
+<p>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</p>
+<h5 id="Document-对象集合"><a href="#Document-对象集合" class="headerlink" title="Document 对象集合"></a>Document 对象集合</h5><table>
+<thead>
+<tr>
+<th>集合</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/coll_doc_all.asp" target="_blank" rel="noopener">all[]</a></td>
+<td>提供对文档中所有 HTML 元素的访问。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/coll_doc_anchors.asp" target="_blank" rel="noopener">anchors[]</a></td>
+<td>返回对文档中所有 Anchor 对象的引用。</td>
+</tr>
+<tr>
+<td>applets</td>
+<td>返回对文档中所有 Applet 对象的引用。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/coll_doc_forms.asp" target="_blank" rel="noopener">forms[]</a></td>
+<td>返回对文档中所有 Form 对象引用。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/coll_doc_images.asp" target="_blank" rel="noopener">images[]</a></td>
+<td>返回对文档中所有 Image 对象引用。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/coll_doc_links.asp" target="_blank" rel="noopener">links[]</a></td>
+<td>返回对文档中所有 Area 和 Link 对象引用。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Document-对象属性"><a href="#Document-对象属性" class="headerlink" title="Document 对象属性"></a>Document 对象属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>提供对 <body> 元素的直接访问。对于定义了框架集的文档，该属性引用最外层的 <frameset>。</frameset></body></td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_cookie.asp" target="_blank" rel="noopener">cookie</a></td>
+<td>设置或返回与当前文档有关的所有 cookie。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_domain.asp" target="_blank" rel="noopener">domain</a></td>
+<td>返回当前文档的域名。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_lastmodified.asp" target="_blank" rel="noopener">lastModified</a></td>
+<td>返回文档被最后修改的日期和时间。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_referrer.asp" target="_blank" rel="noopener">referrer</a></td>
+<td>返回载入当前文档的文档的 URL。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_title.asp" target="_blank" rel="noopener">title</a></td>
+<td>返回当前文档的标题。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/prop_doc_url.asp" target="_blank" rel="noopener">URL</a></td>
+<td>返回当前文档的 URL。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Document-对象方法"><a href="#Document-对象方法" class="headerlink" title="Document 对象方法"></a>Document 对象方法</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_close.asp" target="_blank" rel="noopener">close()</a></td>
+<td>关闭用 document.open() 方法打开的输出流，并显示选定的数据。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_getelementbyid.asp" target="_blank" rel="noopener">getElementById()</a></td>
+<td>返回对拥有指定 id 的第一个对象的引用。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_getelementsbyname.asp" target="_blank" rel="noopener">getElementsByName()</a></td>
+<td>返回带有指定名称的对象集合。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_getelementsbytagname.asp" target="_blank" rel="noopener">getElementsByTagName()</a></td>
+<td>返回带有指定标签名的对象集合。</td>
+</tr>
+<tr>
+<td>getElementsByClassName()</td>
+<td>返回带有指定类名的对象集合</td>
+</tr>
+<tr>
+<td>querySelector()</td>
+<td>返回符合选择器的第一个元素</td>
+</tr>
+<tr>
+<td>querySelectorAll()</td>
+<td>返回符合选择器的所有元素</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_open.asp" target="_blank" rel="noopener">open()</a></td>
+<td>打开一个流，以收集来自任何 document.write() 或 document.writeln() 方法的输出。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_write.asp" target="_blank" rel="noopener">write()</a></td>
+<td>向文档写 HTML 表达式 或 JavaScript 代码。</td>
+</tr>
+<tr>
+<td><a href="http://www.w3school.com.cn/jsref/met_doc_writeln.asp" target="_blank" rel="noopener">writeln()</a></td>
+<td>等同于 write() 方法，不同的是在每个表达式之后写一个换行符。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DOM对象及其组成"><a href="#DOM对象及其组成" class="headerlink" title="DOM对象及其组成"></a>DOM对象及其组成</h3><h4 id="DOM分类"><a href="#DOM分类" class="headerlink" title="DOM分类"></a>DOM分类</h4><p>核心DOM  公用接口处理树结构</p>
+<p>XML DOM  操作XML文档</p>
+<p>HTML DOM 操作HTML文档</p>
+<p>HTML DOM事件模型  事件响应，让页面具有交互能力</p>
+<p>CSS DOM 操作CSS样式</p>
+<h4 id="节点的类型"><a href="#节点的类型" class="headerlink" title="节点的类型"></a>节点的类型</h4><p>文档节点  document</p>
+<p>元素节点  element</p>
+<p>属性节点  attrobute</p>
+<p>文本节点 text</p>
+<h4 id="DOM节点对象"><a href="#DOM节点对象" class="headerlink" title="DOM节点对象"></a>DOM节点对象</h4><h5 id="遍历节点"><a href="#遍历节点" class="headerlink" title="遍历节点"></a>遍历节点</h5><p>parentNode        返回父亲节点</p>
+<p>childNodes        返回所有子节点的集合</p>
+<p>firstElementChild        返回大儿子元素节点</p>
+<p>lastElementChild        返回小儿子元素节点</p>
+<p>nextElementChild    返回下一个兄弟元素节点</p>
+<p>previousElement        返回上一个兄弟元素节点</p>
+<h5 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h5><p>父节点.removeChild(子节点)</p>
+<p>要被删除的节点.remove()</p>
+<p>父节点.hasChildNodes     有子节点返回true,否则false</p>
+<h5 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h5><p>创建元素节点     document.createElement(“标签名称”)</p>
+<p>创建文本节点        document.createTextNode(“文本内容”)</p>
+<p>设置属性            节点.setAttribute(“属性名称”,”属性值”)</p>
+<p>获取属性            节点.getAttribute(“属性名”)</p>
+<h5 id="替换节点"><a href="#替换节点" class="headerlink" title="替换节点"></a>替换节点</h5><p>父节点.replaceChild(新节点,旧节点)</p>
+<p>节点.innerHTML=”HTML内容”</p>
+<p>节点.innerText=”文本内容”</p>
+<h5 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h5><p>目标节点.cloneNode(是否克隆子节点和属性)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="XiaoRI 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="XiaoRI 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaScript/" rel="tag"># javaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/27/JS基础知识整理（二）/" rel="next" title="JS基础知识整理（二）">
+                <i class="fa fa-chevron-left"></i> JS基础知识整理（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4"
+                alt="XiaoRI" />
+            
+              <p class="site-author-name" itemprop="name">XiaoRI</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS由三部分组成"><span class="nav-number">2.</span> <span class="nav-text">JS由三部分组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ECMAScript-ES"><span class="nav-number">3.</span> <span class="nav-text">ECMAScript(ES)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BOM及其组成"><span class="nav-number">4.</span> <span class="nav-text">BOM及其组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Window对象"><span class="nav-number">4.1.</span> <span class="nav-text">Window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#window对象属性"><span class="nav-number">4.1.1.</span> <span class="nav-text">window对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Window-对象方法"><span class="nav-number">4.1.2.</span> <span class="nav-text">Window 对象方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigator对象"><span class="nav-number">4.2.</span> <span class="nav-text">Navigator对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Navigator-对象属性"><span class="nav-number">4.2.1.</span> <span class="nav-text">Navigator 对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Navigator-对象方法"><span class="nav-number">4.2.2.</span> <span class="nav-text">Navigator 对象方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Navigator对象描述"><span class="nav-number">4.2.3.</span> <span class="nav-text">Navigator对象描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Location对象"><span class="nav-number">4.3.</span> <span class="nav-text">Location对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Location-对象属性"><span class="nav-number">4.3.1.</span> <span class="nav-text">Location 对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Location-对象方法"><span class="nav-number">4.3.2.</span> <span class="nav-text">Location 对象方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Location-对象描述"><span class="nav-number">4.3.3.</span> <span class="nav-text">Location 对象描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#History对象"><span class="nav-number">4.4.</span> <span class="nav-text">History对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#History-对象属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">History 对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#History-对象方法"><span class="nav-number">4.4.2.</span> <span class="nav-text">History 对象方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#History-对象描述"><span class="nav-number">4.4.3.</span> <span class="nav-text">History 对象描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Screen对象"><span class="nav-number">4.5.</span> <span class="nav-text">Screen对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Screen-对象属性"><span class="nav-number">4.5.1.</span> <span class="nav-text">Screen 对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Screen-对象描述"><span class="nav-number">4.5.2.</span> <span class="nav-text">Screen 对象描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-Document"><span class="nav-number">4.6.</span> <span class="nav-text">DOM Document</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Document-对象集合"><span class="nav-number">4.6.1.</span> <span class="nav-text">Document 对象集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Document-对象属性"><span class="nav-number">4.6.2.</span> <span class="nav-text">Document 对象属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Document-对象方法"><span class="nav-number">4.6.3.</span> <span class="nav-text">Document 对象方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM对象及其组成"><span class="nav-number">5.</span> <span class="nav-text">DOM对象及其组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM分类"><span class="nav-number">5.1.</span> <span class="nav-text">DOM分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#节点的类型"><span class="nav-number">5.2.</span> <span class="nav-text">节点的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM节点对象"><span class="nav-number">5.3.</span> <span class="nav-text">DOM节点对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历节点"><span class="nav-number">5.3.1.</span> <span class="nav-text">遍历节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除节点"><span class="nav-number">5.3.2.</span> <span class="nav-text">删除节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加节点"><span class="nav-number">5.3.3.</span> <span class="nav-text">添加节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替换节点"><span class="nav-number">5.3.4.</span> <span class="nav-text">替换节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制节点"><span class="nav-number">5.3.5.</span> <span class="nav-text">复制节点</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XiaoRI</span>
+
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
