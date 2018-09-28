@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css3 动画," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言 都知道CSS 用于控制网页的样式和布局。而CSS3 是最新的 CSS 标准。 新特性在CSS3中新增的特性主要分为如下方面： 选择器的新增   选择符类型 表达式 描述     子串匹配的属性选择符 E[att^=”val”] 匹配具有att属性、且值以val开头的E元素   E[att$=”val”] 匹配具有att属性、且值以val结尾的E元素    E[att*=”val”] 匹配具有">
+<meta name="keywords" content="css3 动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3动画简介">
+<meta property="og:url" content="http://yoursite.com/2018/09/18/css3动画简介/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言 都知道CSS 用于控制网页的样式和布局。而CSS3 是最新的 CSS 标准。 新特性在CSS3中新增的特性主要分为如下方面： 选择器的新增   选择符类型 表达式 描述     子串匹配的属性选择符 E[att^=”val”] 匹配具有att属性、且值以val开头的E元素   E[att$=”val”] 匹配具有att属性、且值以val结尾的E元素    E[att*=”val”] 匹配具有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537294296363&di=12ef3e1e50cc971fad4b36c789b407c9&imgtype=0&src=http%3A%2F%2Fckimg.baidu.com%2Fcourse%2F2016-05%2F27%2Fcb14ced98f65b3111d5d64ec101833c5.jpg">
+<meta property="og:updated_time" content="2018-09-18T16:14:49.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css3动画简介">
+<meta name="twitter:description" content="引言 都知道CSS 用于控制网页的样式和布局。而CSS3 是最新的 CSS 标准。 新特性在CSS3中新增的特性主要分为如下方面： 选择器的新增   选择符类型 表达式 描述     子串匹配的属性选择符 E[att^=”val”] 匹配具有att属性、且值以val开头的E元素   E[att$=”val”] 匹配具有att属性、且值以val结尾的E元素    E[att*=”val”] 匹配具有">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537294296363&di=12ef3e1e50cc971fad4b36c789b407c9&imgtype=0&src=http%3A%2F%2Fckimg.baidu.com%2Fcourse%2F2016-05%2F27%2Fcb14ced98f65b3111d5d64ec101833c5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/18/css3动画简介/"/>
+
+
+
+
+
+  <title>css3动画简介 | 小日的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小日的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/css3动画简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XiaoRI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小日的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">css3动画简介</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T23:21:39+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1537294296363&amp;di=12ef3e1e50cc971fad4b36c789b407c9&amp;imgtype=0&amp;src=http%3A%2F%2Fckimg.baidu.com%2Fcourse%2F2016-05%2F27%2Fcb14ced98f65b3111d5d64ec101833c5.jpg" alt=""></p>
+<p>都知道CSS 用于控制网页的样式和布局。而CSS3 是最新的 CSS 标准。</p>
+<h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><p>在CSS3中新增的特性主要分为如下方面：</p>
+<h4 id="选择器的新增"><a href="#选择器的新增" class="headerlink" title="选择器的新增"></a>选择器的新增</h4><table>
+<thead>
+<tr>
+<th>选择符类型</th>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子串匹配的属性选择符</td>
+<td>E[att^=”val”]</td>
+<td>匹配具有att属性、且值以val开头的E元素</td>
+</tr>
+<tr>
+<td>E[att$=”val”]</td>
+<td>匹配具有att属性、且值以val结尾的E元素</td>
+<td></td>
+</tr>
+<tr>
+<td>E[att*=”val”]</td>
+<td>匹配具有att属性、且值中含有val的E元素</td>
+<td></td>
+</tr>
+<tr>
+<td>结构性伪类</td>
+<td>E:root</td>
+<td>匹配文档的根元素。在<a href="https://baike.baidu.com/item/HTML" target="_blank" rel="noopener">HTML</a>（<a href="https://baike.baidu.com/item/%E6%A0%87%E5%87%86%E9%80%9A%E7%94%A8%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener">标准通用标记语言</a>下的一个应用）中，根元素永远是HTML</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配父元素中的第n个子元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配父元素中的倒数第n个结构子元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>匹配同类型中的第n个同级兄弟元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>匹配同类型中的倒数第n个同级兄弟元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配父元素中最后一个E元素</td>
+<td></td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配同级兄弟元素中的第一个E元素</td>
+<td></td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配属于父元素中唯一子元素的E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配属于同类型中唯一兄弟元素的E</td>
+<td></td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配没有任何子元素（包括text节点）的元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>目标伪类</td>
+<td>E:target</td>
+<td>匹配相关URL指向的E元素</td>
+</tr>
+<tr>
+<td>UI元素状态伪类</td>
+<td>E:enabled</td>
+<td>匹配所有用户界面（form表单）中处于可用状态的E元素</td>
+</tr>
+<tr>
+<td>E:disabled</td>
+<td>匹配所有用户界面（form表单）中处于不可用状态的E元素</td>
+<td></td>
+</tr>
+<tr>
+<td>E:checked</td>
+<td>匹配所有用户界面（form表单）中处于选中状态的元素E</td>
+<td></td>
+</tr>
+<tr>
+<td>E::selection</td>
+<td>匹配E元素中被用户选中或处于高亮状态的部分</td>
+<td></td>
+</tr>
+<tr>
+<td>否定伪类</td>
+<td>E:not(s)</td>
+<td>匹配所有不匹配简单选择符s的元素E</td>
+</tr>
+<tr>
+<td>通用兄弟元素选择器</td>
+<td>E ~ F</td>
+<td>匹配E元素之后的F元素</td>
+</tr>
+</tbody>
+</table>
+<p>如果想尝试实现一个干净的、轻量级的标签以及结构与表现更好的分离，高级选择器是非常有用的，它们可以减少在标签中的class和ID的数量并让设计师更方便地维护样式表 ，不过需要注意的是，母亲在微信小程序中有些css3的选择器暂时是不支持的，具体参阅小程序开发文档（<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html）" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html）</a></p>
+<h4 id="文字颜色特性"><a href="#文字颜色特性" class="headerlink" title="文字颜色特性"></a>文字颜色特性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-hanging-punctuation.html" target="_blank" rel="noopener">hanging-punctuation</a></td>
+<td>规定标点字符是否位于线框之外。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-punctuation-trim.html" target="_blank" rel="noopener">punctuation-trim</a></td>
+<td>规定是否对标点字符进行修剪。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-align-last.html" target="_blank" rel="noopener">text-align-last</a></td>
+<td>设置如何对齐最后一行或紧挨着强制换行符之前的行。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/css3/css3-pr-text-emphasis.html" target="_blank" rel="noopener">text-emphasis</a></td>
+<td>向元素的文本应用重点标记以及重点标记的前景色。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-justify.html" target="_blank" rel="noopener">text-justify</a></td>
+<td>规定当 text-align 设置为 “justify” 时所使用的对齐方法。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-outline.html" target="_blank" rel="noopener">text-outline</a></td>
+<td>规定文本的轮廓。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-overflow.html" target="_blank" rel="noopener">text-overflow</a></td>
+<td>规定当文本溢出包含元素时发生的事情。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-shadow.html" target="_blank" rel="noopener">text-shadow</a></td>
+<td>向文本添加阴影。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-text-wrap.html" target="_blank" rel="noopener">text-wrap</a></td>
+<td>规定文本的换行规则。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-word-break.html" target="_blank" rel="noopener">word-break</a></td>
+<td>规定非中日韩文本的换行规则。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-word-wrap.html" target="_blank" rel="noopener">word-wrap</a></td>
+<td>允许对长的不可分割的单词进行分割并换行到下一行。</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="背景和边框"><a href="#背景和边框" class="headerlink" title="背景和边框"></a>背景和边框</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-border-image.html" target="_blank" rel="noopener">border-image</a></td>
+<td>设置所有边框图像的速记属性。</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-border-radius.html" target="_blank" rel="noopener">border-radius</a></td>
+<td>一个用于设置所有四个边框- *-半径属性的速记属性</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/cssref/css3-pr-box-shadow.html" target="_blank" rel="noopener">box-shadow</a></td>
+<td>附加一个或多个下拉框的阴影</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h4><p>css3中新增了怪异盒子和标准盒子的概念；</p>
+<p>所谓的标准盒子就是我们平时计算盒子总宽度/高度=width/height+padding+border+margin </p>
+<p>新增的怪异盒子就是盒子总宽度/高度=width/height + margin = 内容区宽度/高度 + padding + border + margin; 怪异盒子通常适用于移动端布局，即屏幕为定宽，根据内容显示；</p>
+<h4 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h4><p>弹性盒子是 CSS3 的一种新的布局模式，可以说是非常强大的一个功能了，对于不同设备的显示起到了很大的帮助。</p>
+<p>CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。</p>
+<p>引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。</p>
+<p>使用方法</p>
+<p><code>display:flex;</code></p>
+<p>属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//设置主轴方向</span><br><span class="line">flex-direction:row      //默认为row，水平方向</span><br><span class="line">			  row-reverse		//与row相同，顺序相反</span><br><span class="line">			  column		//垂直方向</span><br><span class="line">			  column-reverse		//与column相同，顺序相反</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//设置换行</span><br><span class="line">flex-wrap:nowrap    //默认值，表示不换行或不折列</span><br><span class="line">		 wrap		//换行</span><br><span class="line">		 wrap-reverse	//换行并且顺序相反</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//设置主轴对齐方式</span><br><span class="line">justify-content:flex-start;		//默认值 左对齐</span><br><span class="line">			   flex-end;		//右对齐</span><br><span class="line">			   center;			//居中</span><br><span class="line">			   space-between;	//元素与元素之间留白</span><br><span class="line">			   space-around;	//元素左右都留白</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//设置侧轴对齐方式</span><br><span class="line">align-items:stretch;	//默认值  拉伸到适应长度</span><br><span class="line">		   center;		//侧轴居中</span><br><span class="line">		   flex-start/end		//侧轴顶部/底部</span><br><span class="line">		   baseline		//基线对齐</span><br></pre></td></tr></table></figure>
+<p>以下是定义 在子项的元素上的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order   //排序</span><br><span class="line">flex-grow:&lt;number&gt;		//默认是0  放大比例</span><br><span class="line">flex-shrink:&lt;number&gt;	//默认是1	缩小比例</span><br><span class="line">flex-basis:30px;		//表示跟width或height一样的值</span><br><span class="line">flex:			//以上三个的复合值</span><br><span class="line">align-self:auto/flex-start/flex-end/	//表示设置当前子项的对齐方式</span><br></pre></td></tr></table></figure>
+<p>注意：有时候设置的felx不生效，兼容不同浏览器的方式是加上对应浏览的前缀，</p>
+<p>​    -webkit-        chrome、safari        例display: -webkit-flex; </p>
+<p>​    -moz-        firefox</p>
+<p>​    -ms-        ie</p>
+<p>​    -0-            opera</p>
+<h4 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h4><h4 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h4><h4 id="2D-3D转换"><a href="#2D-3D转换" class="headerlink" title="2D/3D转换"></a>2D/3D转换</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="XiaoRI 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="XiaoRI 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css3-动画/" rel="tag"># css3 动画</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/14/微信小程序入门指南-（二）/" rel="next" title="微信小程序入门指南-（二）">
+                <i class="fa fa-chevron-left"></i> 微信小程序入门指南-（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/ES6十大新特性/" rel="prev" title="ES6十大新特性">
+                ES6十大新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4"
+                alt="XiaoRI" />
+            
+              <p class="site-author-name" itemprop="name">XiaoRI</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">2.</span> <span class="nav-text">新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择器的新增"><span class="nav-number">2.1.</span> <span class="nav-text">选择器的新增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文字颜色特性"><span class="nav-number">2.2.</span> <span class="nav-text">文字颜色特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#背景和边框"><span class="nav-number">2.3.</span> <span class="nav-text">背景和边框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#盒子模型"><span class="nav-number">2.4.</span> <span class="nav-text">盒子模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flex布局"><span class="nav-number">2.5.</span> <span class="nav-text">flex布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过渡"><span class="nav-number">2.6.</span> <span class="nav-text">过渡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动画"><span class="nav-number">2.7.</span> <span class="nav-text">动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2D-3D转换"><span class="nav-number">2.8.</span> <span class="nav-text">2D/3D转换</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XiaoRI</span>
+
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
