@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javaScpript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言也许很多人像我一样，觉得JS有垃圾回收机制，内存就可以不管了，以至于在全局作用域下定义了很多变量，自以为JS会自动回收，直到最近，看了阮一峰老师，关于javascript内存泄漏的文章时，才发现自己写的代码，存在很严重的内存泄漏问题，再者，因为忽略对内存的学习，导致后面很多进阶概念很模糊，比如深复制与浅复制的区别，比如闭包、作用域链等等。  堆与栈与C/C++不同，JavaScript语言没有">
+<meta name="keywords" content="javaScpript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS进阶系列只内存泄漏">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/JS进阶系列之内存泄漏/index.html">
+<meta property="og:site_name" content="小日的博客">
+<meta property="og:description" content="引言也许很多人像我一样，觉得JS有垃圾回收机制，内存就可以不管了，以至于在全局作用域下定义了很多变量，自以为JS会自动回收，直到最近，看了阮一峰老师，关于javascript内存泄漏的文章时，才发现自己写的代码，存在很严重的内存泄漏问题，再者，因为忽略对内存的学习，导致后面很多进阶概念很模糊，比如深复制与浅复制的区别，比如闭包、作用域链等等。  堆与栈与C/C++不同，JavaScript语言没有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4067575-b8449d5184b1ecb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4067575-b3404272eb2bafdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4067575-245cd7d0cdd5247c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4067575-8d8188cdb5b0dbf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-09T04:05:01.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS进阶系列只内存泄漏">
+<meta name="twitter:description" content="引言也许很多人像我一样，觉得JS有垃圾回收机制，内存就可以不管了，以至于在全局作用域下定义了很多变量，自以为JS会自动回收，直到最近，看了阮一峰老师，关于javascript内存泄漏的文章时，才发现自己写的代码，存在很严重的内存泄漏问题，再者，因为忽略对内存的学习，导致后面很多进阶概念很模糊，比如深复制与浅复制的区别，比如闭包、作用域链等等。  堆与栈与C/C++不同，JavaScript语言没有">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4067575-b8449d5184b1ecb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/09/JS进阶系列之内存泄漏/"/>
+
+
+
+
+
+  <title>JS进阶系列只内存泄漏 | 小日的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小日的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/JS进阶系列之内存泄漏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XiaoRI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小日的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS进阶系列只内存泄漏</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T11:56:35+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>也许很多人像我一样，觉得JS有垃圾回收机制，内存就可以不管了，以至于在全局作用域下定义了很多变量，自以为JS会自动回收，直到最近，看了阮一峰老师，关于javascript内存泄漏的文章时，才发现自己写的代码，存在很严重的内存泄漏问题，再者，因为忽略对内存的学习，导致后面很多进阶概念很模糊，比如深复制与浅复制的区别，比如闭包、作用域链等等。 </p>
+<h3 id="堆与栈"><a href="#堆与栈" class="headerlink" title="堆与栈"></a>堆与栈</h3><p>与C/C++不同，JavaScript语言没有严格意义上，区分堆与栈，所以我们可以理解为，JavaScript所有的数据都是存放在<code>堆内存</code>中。<br>不过，在某些场景下，我们仍然需要借助堆栈数据结构来处理，所以有必要理解一下这两个数据结构的区别。</p>
+<blockquote>
+<p>栈：也叫做堆栈</p>
+</blockquote>
+<p>栈数据结构的一个特点就是<code>后进先出</code>，好比羽毛球盒子，在一头放羽毛球，在另外一头取羽毛球。<br>堆数据结构，好比书架上的书，虽然已经按顺序放好了，但是我们只要知道书的名字，就可以对应的取下来，类似于JSON对象中的<code>key-value</code>。</p>
+<h3 id="变量对象与基本数据类型"><a href="#变量对象与基本数据类型" class="headerlink" title="变量对象与基本数据类型"></a>变量对象与基本数据类型</h3><p>JavaScript中的数据类型大致分为，<code>基本数据类型</code>与<code>引用数据类型</code>，上文提到，JavaScript中所有的数据都是存放在<code>堆内存</code>中，但是，这里提到的<code>变量对象</code>（在执行上下文创建阶段生成），由于它有特殊的职能，所以在理解上就把它与堆内存单独分开了，如下图所示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4067575-b8449d5184b1ecb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>一般<code>变量对象</code>里面存放的是<code>基本数据类型</code>,包括<code>Undefined、Null、Boolean、Number、String</code>,它们到是<code>按值访问</code>的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">demo01</span><br><span class="line">var a  = 20;</span><br><span class="line">var b  = a;</span><br><span class="line">b = 30;</span><br><span class="line">console.log(a);//20</span><br></pre></td></tr></table></figure>
+<p>上面这段代码指的是，在变量对象中执行数据复制的时候，其实系统会自动为新的变量分配一个新的值，所以a与b其实已经是完全独立的两个变量，只是值一样而已。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4067575-b3404272eb2bafdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="堆内存与引用数据类型"><a href="#堆内存与引用数据类型" class="headerlink" title="堆内存与引用数据类型"></a>堆内存与引用数据类型</h3><p>javascript中的<code>引用数据类型</code>是存放在<code>堆内存</code>中的，但是不同于<code>变量对象</code>，javascript是不允许直接访问堆内存中的数据，所以如果我们要访问引用数据类型的时候，采用的是<code>按引用访问</code>，其实就是在<code>变量对象</code>中存放了一个指向对象的句柄，可以理解为一个地址，要访问堆内存中的对象，就要通过这个引用句柄来访问，例如上图中的d变量，就是一个指向对象的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">demo02</span><br><span class="line">var m = &#123; a:10,b:20&#125;;</span><br><span class="line">var n = m;</span><br><span class="line">n.a = 15;</span><br><span class="line">console.log(m.a);//15</span><br></pre></td></tr></table></figure>
+<p>上面这段代码指的是执行引用类型数据的复制时，在变量对象中会分配一个新的值，来存放新的变量，但是这两个变量的地址是一样的，相当于指向的对象是一样的，所以各自改变对象里面的属性值，会互相影响，如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4067575-245cd7d0cdd5247c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>上面讲解了JavaScript中的内存空间，接下来就要讲解，我写这篇文章的初衷，就是我代码中严重的<code>内存泄漏</code></p>
+<blockquote>
+<p>内存泄漏：就是不再用到的内存，但是没有及时释放，就叫做内存泄漏</p>
+</blockquote>
+<p>有些语言必须手动释放内存，程序员负责内存的管理，例如C语言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char *buffer;</span><br><span class="line">buffer = (char*) malloc(42);</span><br><span class="line">//do something with buffer</span><br><span class="line">free(buffer);</span><br></pre></td></tr></table></figure>
+<p>这里<code>malloc</code>就是负责分配内存，<code>free</code>是负责释放内存。</p>
+<p>那么JavaScript中的垃圾回收机制又是怎么一回事呢？</p>
+<h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3><p>以前我一直天真的以为，垃圾回收机制就像人工智能一样，会自动帮你识别出不用的内存，然后释放掉，然而真相只有一个<br>垃圾回收机制的原理就是，使用<code>引用计数</code>法，就是语言引擎有一张“引用表”，保存了内存里面所有的资源的引用次数，就像下面这样</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4067575-8d8188cdb5b0dbf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>但是如果一个值不再需要了，引用数却不为0，垃圾回收机制是无法释放这块内存，从而导致<code></code>内存泄漏<code>例如：</code><br>const arr = [1,2,3,4,5];<br>console.log(‘hello world”);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr的引用次数为1，尽管后面不再使用arr了，但是它还会持续占用内存，所以一般要这样处理</span><br></pre></td></tr></table></figure>
+<p>const arr = [1,2,3,4,5];<br>console.log(‘hello world”);<br>arr = null;<br>`<code></code><br>让arr的指向为空，垃圾回收机制就会默认它的引用数为0而回收掉。</p>
+<h3 id="避免内存泄漏"><a href="#避免内存泄漏" class="headerlink" title="避免内存泄漏"></a>避免内存泄漏</h3><blockquote>
+<p>在局部作用域中，等函数执行完毕，变量就没有存在的必要了，js垃圾回收机制很快做出判断并且回收，但是对于全局变量，很难判断什么时候不用，所以，经验之谈就是，尽量少使用全局变量。<br>我们在使用闭包的时候，就会造成严重的内存泄漏，因为闭包的原因，局部变量会一直保存在内存中，所以在使用闭包的时候，要多加小心。</p>
+</blockquote>
+<p>标签: <a href="https://www.cnblogs.com/mcray/tag/javascript/" target="_blank" rel="noopener">javascript</a></p>
+<p>注：博客转载自：<a href="https://www.cnblogs.com/mcray/p/7002089.html" target="_blank" rel="noopener">https://www.cnblogs.com/mcray/p/7002089.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="XiaoRI 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="XiaoRI 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaScpript/" rel="tag"># javaScpript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/h5语义化/" rel="next" title="h5语义化">
+                <i class="fa fa-chevron-left"></i> h5语义化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars1.githubusercontent.com/u/33147011?s=400&v=4"
+                alt="XiaoRI" />
+            
+              <p class="site-author-name" itemprop="name">XiaoRI</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆与栈"><span class="nav-number">2.</span> <span class="nav-text">堆与栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量对象与基本数据类型"><span class="nav-number">3.</span> <span class="nav-text">变量对象与基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆内存与引用数据类型"><span class="nav-number">4.</span> <span class="nav-text">堆内存与引用数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存泄漏"><span class="nav-number">5.</span> <span class="nav-text">内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">6.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免内存泄漏"><span class="nav-number">7.</span> <span class="nav-text">避免内存泄漏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XiaoRI</span>
+
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
