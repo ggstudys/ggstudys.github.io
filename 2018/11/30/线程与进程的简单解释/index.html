@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="h5," />
+  <meta name="keywords" content="线程、进程," />
 
 
 
@@ -79,18 +79,30 @@
 
 
 
-<meta name="description" content="距HTML5标准规范制定完成并公开发布已经有好些年了，面试时也少不了要问对HTML5语义化得理解。但是在实际运用时，真正使用HTML5标签来开发的似乎不是很多（ps：查看了几个巨头公司网站推论），可能一部分原因是仍有部分用户使用在使用低版本浏览器。 但是就我个人而言，因选取一些标签时会比较纠结，所以仍使用了div。（PS：正是因为这样，才有了这篇文章的，没错，以后要注意语义化了） 什么是语义化？就">
-<meta name="keywords" content="h5">
+<meta name="description" content="引言进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。 最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。 1.  计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。 2.  假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行">
+<meta name="keywords" content="线程、进程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="h5语义化">
-<meta property="og:url" content="http://yoursite.com/2018/10/15/h5语义化/index.html">
+<meta property="og:title" content="线程与进程的简单解释">
+<meta property="og:url" content="http://yoursite.com/2018/11/30/线程与进程的简单解释/index.html">
 <meta property="og:site_name" content="小日的博客">
-<meta property="og:description" content="距HTML5标准规范制定完成并公开发布已经有好些年了，面试时也少不了要问对HTML5语义化得理解。但是在实际运用时，真正使用HTML5标签来开发的似乎不是很多（ps：查看了几个巨头公司网站推论），可能一部分原因是仍有部分用户使用在使用低版本浏览器。 但是就我个人而言，因选取一些标签时会比较纠结，所以仍使用了div。（PS：正是因为这样，才有了这篇文章的，没错，以后要注意语义化了） 什么是语义化？就">
+<meta property="og:description" content="引言进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。 最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。 1.  计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。 2.  假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-15T05:57:53.329Z">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042401.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042402.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042403.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042404.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042405.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042406.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042407.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042408.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042409.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042410.jpg">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png">
+<meta property="og:updated_time" content="2018-11-30T09:12:22.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="h5语义化">
-<meta name="twitter:description" content="距HTML5标准规范制定完成并公开发布已经有好些年了，面试时也少不了要问对HTML5语义化得理解。但是在实际运用时，真正使用HTML5标签来开发的似乎不是很多（ps：查看了几个巨头公司网站推论），可能一部分原因是仍有部分用户使用在使用低版本浏览器。 但是就我个人而言，因选取一些标签时会比较纠结，所以仍使用了div。（PS：正是因为这样，才有了这篇文章的，没错，以后要注意语义化了） 什么是语义化？就">
+<meta name="twitter:title" content="线程与进程的简单解释">
+<meta name="twitter:description" content="引言进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。 最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。 1.  计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。 2.  假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行">
+<meta name="twitter:image" content="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042401.jpg">
 
 
 
@@ -120,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/15/h5语义化/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/30/线程与进程的简单解释/"/>
 
 
 
 
 
-  <title>h5语义化 | 小日的博客</title>
+  <title>线程与进程的简单解释 | 小日的博客</title>
   
 
 
@@ -263,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/h5语义化/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/线程与进程的简单解释/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XiaoRI">
@@ -280,7 +292,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">h5语义化</h2>
+          <h2 class="post-title" itemprop="name headline">线程与进程的简单解释</h2>
         
 
         <div class="post-meta">
@@ -292,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T11:15:13+08:00">
-                2018-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-30T17:10:30+08:00">
+                2018-11-30
               </time>
             
 
@@ -330,37 +342,47 @@
       
 
       
-        <p>距HTML5标准规范制定完成并公开发布已经有好些年了，面试时也少不了要问对HTML5语义化得理解。但是在实际运用时，真正使用HTML5标签来开发的似乎不是很多（ps：查看了几个巨头公司网站推论），可能一部分原因是仍有部分用户使用在使用低版本浏览器。</p>
-<p>但是就我个人而言，因选取一些标签时会比较纠结，所以仍使用了div。（PS：正是因为这样，才有了这篇文章的，没错，以后要注意语义化了）</p>
-<p>什么是语义化？就是用合理、正确的标签来展示内容，比如h1~h6定义标题。</p>
-<p>语义化优点：</p>
-<p>易于用户阅读，样式丢失的时候能让页面呈现清晰的结构。<br>有利于SEO，搜索引擎根据标签来确定上下文和各个关键字的权重。<br>方便其他设备解析，如盲人阅读器根据语义渲染网页<br>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。<br>今天先介绍主体结构标签，如图所示：</p>
-<p>HTML5-语义化</p>
-<p>1、<header></header></p>
-<p><header>定义文档或者文档的部分区域的页眉，应作为介绍内容或者导航链接栏的容器。</header></p>
-<p>在一个文档中，您可以定义多个<header>元素，但需要注意的是<header>元素不能作为<address>、<footer> 或 <header> 元素的子元素。</header></footer></address></header></header></p>
-<p>2、<nav></nav></p>
-<p><nav>描述一个含有多个超链接的区域，该区域包含跳转到其他页面或页面内部其他部分的链接列表。</nav></p>
-<p>在一个文档中，可定义多个<nav>元素。</nav></p>
-<p>3、<main></main></p>
-<p><main> 定义文档的主要内容，该内容在文档中应当是独一无二的，不包含任何在文档中重复的内容，比如侧边栏，导航栏链接，版权信息，网站logo，搜索框（除非搜索框作为文档的主要功能）。</main></p>
-<p>需要注意的是在一个文档中不能出现多个<main>标签。</main></p>
-<p>4、<article></article></p>
-<p><article>元素表示文档、页面、应用或网站中的独立结构，是可独立分配的、可复用的结构，如在发布中，它可能是论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。</article></p>
-<p>当<article>元素嵌套使用时，则该元素代表与外层元素有关的文章。例如，代表博客评论的<article>元素可嵌套在代表博客文章的<article>元素中。</article></article></article></p>
-<p>5、<aside></aside></p>
-<p><aside> 元素表示一个和其余页面内容几乎无关的部分，被认为是独立于该内容的一部分且可以被单独的拆分出来而不会影响整体。通常表现为侧边栏或嵌入内容。</aside></p>
-<p>6、<footer></footer></p>
-<p><footer>定义最近一个章节内容或者根节点元素的页脚。一个页脚通常包含该章节作者、版权数据或者与文档相关的链接等信息。</footer></p>
-<p>使用footer插入联系信息时，应在 footer 元素内使用 <address> 元素。</address></p>
-<p>注意不能包含<footer>或者<header></header></footer></p>
-<p>7、<section></section></p>
-<p><section>表示文档中的一个区域（或节），比如，内容中的一个专题组。</section></p>
-<p>如果元素内容可以分为几个部分的话，应该使用 <article> 而不是 <section>。</section></article></p>
-<p>不要把 <section> 元素作为一个普通的容器来使用，特别是当<section>仅仅是为了美化样式或方便脚本使用的时候，应使用<div>。</div></section></section></p>
-<p>这几个标签，比较容易混淆的是<section>、<article>，所以这里特别说明：</article></section></p>
-<p>“Authors are encouraged to use the article element instead of the section element when it would make sense to syndicate the contents of the elemen.”</p>
-<p>通俗来说就是<article>比<section>更具有独立性、完整性。可通过该段内容脱离了所在的语境，是否完整、独立来判断。</section></article></p>
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p><a href="https://zh.wikipedia.org/zh-cn/%E8%BF%9B%E7%A8%8B" target="_blank" rel="noopener">进程</a>（process）和<a href="https://zh.wikipedia.org/zh-cn/%E7%BA%BF%E7%A8%8B" target="_blank" rel="noopener">线程</a>（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。</p>
+<p>最近，我读到一篇<a href="http://www.qnx.com/developers/docs/6.4.1/neutrino/getting_started/s1_procs.html" target="_blank" rel="noopener">材料</a>，发现有一个很好的类比，可以把它们解释地清晰易懂。</p>
+<p>1.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042401.jpg" alt="img"></p>
+<p>计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。</p>
+<p>2.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042402.png" alt="img"></p>
+<p>假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。</p>
+<p>3.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042403.jpg" alt="img"></p>
+<p>进程就好比工厂的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。</p>
+<p>4.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042404.jpg" alt="img"></p>
+<p>一个车间里，可以有很多工人。他们协同完成一个任务。</p>
+<p>5.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042405.jpg" alt="img"></p>
+<p>线程就好比车间里的工人。一个进程可以包括多个线程。</p>
+<p>6.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042406.png" alt="img"></p>
+<p>车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。</p>
+<p>7.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042407.jpg" alt="img"></p>
+<p>可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。</p>
+<p>8.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042408.jpg" alt="img"></p>
+<p>一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫<a href="http://zh.wikipedia.org/wiki/%E4%BA%92%E6%96%A5%E9%94%81" target="_blank" rel="noopener">“互斥锁”</a>（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。</p>
+<p>9.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042409.jpg" alt="img"></p>
+<p>还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。</p>
+<p>10.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042410.jpg" alt="img"></p>
+<p>这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做<a href="http://en.wikipedia.org/wiki/Semaphore_(programming" target="_blank" rel="noopener">“信号量”</a>)（Semaphore），用来保证多个线程不会互相冲突。</p>
+<p>不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。</p>
+<p>11.</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
+<p>操作系统的设计，因此可以归结为三点：</p>
+<p>（1）以多进程形式，允许多个任务同时运行；</p>
+<p>（2）以多线程形式，允许单个任务分成不同的部分运行；</p>
+<p>（3）提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。</p>
+<p>（完）</p>
+<p>注：文章转载自大神阮一峰的网络日志 （<a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html）" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html）</a></p>
 
       
     </div>
@@ -407,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/h5/" rel="tag"># h5</a>
+            <a href="/tags/线程、进程/" rel="tag"># 线程、进程</a>
           
         </div>
       
@@ -420,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/移动端开发的兼容问题（二）/" rel="next" title="移动端开发的兼容问题（二）">
-                <i class="fa fa-chevron-left"></i> 移动端开发的兼容问题（二）
+              <a href="/2018/11/14/css常用样式/" rel="next" title="css常用样式">
+                <i class="fa fa-chevron-left"></i> css常用样式
               </a>
             
           </div>
@@ -429,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/09/JS进阶系列之内存泄漏/" rel="prev" title="JS进阶系列之内存泄漏">
-                JS进阶系列之内存泄漏 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -540,6 +567,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
