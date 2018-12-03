@@ -88,16 +88,12 @@
 <meta property="og:description" content="引言相信不少朋友再初学JS时都会遇到有关跨域的问题，所以特地搜集资料整理了这篇文章，希望堆各位能有所帮助。 概念跨域: 浏览器对于javascript的同源策略的限制,例如a.cn下面的js不能调用b.cn中的js,对象或数据(因为a.cn和b.cn是不同域),所以跨域就出现了. 上面提到的,同域的概念又是什么呢??? 简单的解释就是相同域名,端口相同,协议相同 同源策略: 请求的url地址,必须">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/G:/newblog/source/_posts/浅谈跨域/kuayu1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/images/kuayu1.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/825922/201510/825922-20151028230107904-1333387603.png">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/825922/201510/825922-20151028230247091-934044692.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184527-4a8d6daf1de24478bd492441755ee5d4.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184528-5bc01c7fb57c474ca6fafa6edd09218d.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184529-57760c8711a54fde9839b5934d8bddd0.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184530-1072ef43c61b4f169eaabd2dfdfde7ef.png">
-<meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184531-3bc04aa442d9494bae8dc1f325513893.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu3.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu4.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu5.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu6.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/浅谈跨域/kuayu7.png">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184532-ad98082ee5044921b1b667f1ec2b822b.png">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184533-aaa37d1a446f4ff2871d9e2b3e9477da.png">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184534-ebbe36523151419cb20df7beb37c277a.png">
@@ -108,7 +104,7 @@
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184545-4d435286d9974c65890ececbce8be9b7.png">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184546-6d54ada26b1a47cc8d856b0cd90d6017.png">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/130623/201307/15184547-c3c3317b3a674b9c8bfb65b1898e1829.png">
-<meta property="og:updated_time" content="2018-12-03T09:02:11.293Z">
+<meta property="og:updated_time" content="2018-12-03T09:18:55.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈跨域">
 <meta name="twitter:description" content="引言相信不少朋友再初学JS时都会遇到有关跨域的问题，所以特地搜集资料整理了这篇文章，希望堆各位能有所帮助。 概念跨域: 浏览器对于javascript的同源策略的限制,例如a.cn下面的js不能调用b.cn中的js,对象或数据(因为a.cn和b.cn是不同域),所以跨域就出现了. 上面提到的,同域的概念又是什么呢??? 简单的解释就是相同域名,端口相同,协议相同 同源策略: 请求的url地址,必须">
@@ -360,31 +356,27 @@
 <p>请求的url地址,必须与浏览器上的url地址处于同域上,也就是域名,端口,协议相同.</p>
 <p>比如:我在本地上的域名是study.cn,请求另外一个域名一段数据</p>
 <p><img src="/2018/12/03/浅谈跨域/kuayu1.png" alt="imggg"></p>
-<p><img src="/2018/12/03/浅谈跨域/kuayu1.png" alt="img"></p>
-<p><img src="/2018/12/03/浅谈跨域/G:/newblog\source\_posts\浅谈跨域\kuayu1.png" alt="img"></p>
-<p><img src="/2018/12/03/浅谈跨域/../../images/kuayu1.png" alt="img"></p>
-<p><img src="https://images2015.cnblogs.com/blog/825922/201510/825922-20151028230107904-1333387603.png" alt="img"></p>
 <p>这个时候在浏览器上会报错:</p>
 <p><img src="https://images2015.cnblogs.com/blog/825922/201510/825922-20151028230247091-934044692.png" alt="img"></p>
 <p>这个就是同源策略的保护,如果浏览器对javascript没有同源策略的保护,那么一些重要的机密网站将会很危险~</p>
 <h3 id="解决跨域方法"><a href="#解决跨域方法" class="headerlink" title="解决跨域方法"></a>解决跨域方法</h3><p><strong>一、通过jsonp跨域</strong></p>
 <p>在js中，我们直接用XMLHttpRequest请求不同域上的数据时，是不可以的。但是，在页面上引入不同域上的js脚本文件却是可以的，jsonp正是利用这个特性来实现的。</p>
 <p>比如，有个a.html页面，它里面的代码需要利用ajax获取一个不同域上的json数据，假设这个json数据地址是<a href="http://example.com/data.php" target="_blank" rel="noopener">http://example.com/data.php</a>,那么a.html中的代码就可以这样：</p>
-<p><a href="https://images0.cnblogs.com/blog/130623/201307/15184526-bcc1971f27094439b746cb1f52a715be.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184527-4a8d6daf1de24478bd492441755ee5d4.png" alt="QQ截图20130613230631"></a></p>
+<p><img src="/2018/12/03/浅谈跨域/kuayu3.png" alt=""></p>
 <p>我们看到获取数据的地址后面还有一个callback参数，按惯例是用这个参数名，但是你用其他的也一样。当然如果获取数据的jsonp地址页面不是你自己能控制的，就得按照提供数据的那一方的规定格式来操作了。</p>
 <p>因为是当做一个js文件来引入的，所以<a href="http://example.com/data.php" target="_blank" rel="noopener">http://example.com/data.php</a>返回的必须是一个能执行的js文件，所以这个页面的php代码可能是这样的:</p>
-<p><a href="https://images0.cnblogs.com/blog/130623/201307/15184527-28a9558c3caa424683980a50b8371134.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184528-5bc01c7fb57c474ca6fafa6edd09218d.png" alt="QQ截图20130613230631"></a></p>
+<p><img src="/2018/12/03/浅谈跨域/kuayu4.png" alt=""></p>
 <p>最终那个页面输出的结果是:</p>
-<p><a href="https://images0.cnblogs.com/blog/130623/201307/15184528-32bbea18197b4e35bb5f67480da1f367.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184529-57760c8711a54fde9839b5934d8bddd0.png" alt="QQ截图20130613230631"></a></p>
+<p><img src="/2018/12/03/浅谈跨域/kuayu5.png" alt=""></p>
 <p>所以通过<a href="http://example.com/data.php?callback=dosomething" target="_blank" rel="noopener">http://example.com/data.php?callback=dosomething</a>得到的js文件，就是我们之前定义的dosomething函数,并且它的参数就是我们需要的json数据，这样我们就跨域获得了我们需要的数据。</p>
 <p>这样jsonp的原理就很清楚了，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要服务器端的页面进行相应的配合的。</p>
 <p>知道jsonp跨域的原理后我们就可以用js动态生成script标签来进行跨域操作了，而不用特意的手动的书写那些script标签。如果你的页面使用jquery，那么通过它封装的方法就能很方便的来进行jsonp操作了。</p>
-<p><a href="https://images0.cnblogs.com/blog/130623/201307/15184529-f4a5efe2881a40eebbdca2b463e264bf.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184530-1072ef43c61b4f169eaabd2dfdfde7ef.png" alt="QQ截图20130613230631"></a></p>
+<p><img src="/2018/12/03/浅谈跨域/kuayu6.png" alt=""></p>
 <p>原理是一样的，只不过我们不需要手动的插入script标签以及定义回掉函数。jquery会自动生成一个全局函数来替换callback=?中的问号，之后获取到数据后又会自动销毁，实际上就是起一个临时代理函数的作用。$.getJSON方法会自动判断是否跨域，不跨域的话，就调用普通的ajax方法；跨域的话，则会以异步加载js文件的形式来调用jsonp的回调函数。</p>
 <p><strong>2、通过修改document.domain来跨子域</strong></p>
 <p>首先用document.domain来指定域，是可以的，但是有局限性，也就是一级域名一致才可以。</p>
 <p>浏览器都有一个同源策略，其限制之一就是第一种方法中我们说的不能通过ajax的方法去请求不同源中的文档。 它的第二个限制是浏览器中不同域的框架之间是不能进行js的交互操作的。有一点需要说明，不同的框架之间（父子或同辈），是能够获取到彼此的window对象的，但蛋疼的是你却不能使用获取到的window对象的属性和方法(html5中的postMessage方法是一个例外，还有些浏览器比如ie6也可以使用top、parent等少数几个属性)，总之，你可以当做是只能获取到一个几乎无用的window对象。比如，有一个页面，它的地址是<a href="http://www.example.com/a.html" target="_blank" rel="noopener">http://www.example.com/a.html</a>  ， 在这个页面里面有一个iframe，它的src是<a href="http://example.com/b.html" target="_blank" rel="noopener">http://example.com/b.html</a>, 很显然，这个页面与它里面的iframe框架是不同域的，所以我们是无法通过在页面中书写js代码来获取iframe中的东西的：</p>
-<p>  <a href="https://images0.cnblogs.com/blog/130623/201307/15184530-8b5ff5011fc24c7a9949eac174a4dc73.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184531-3bc04aa442d9494bae8dc1f325513893.png" alt="QQ截图20130613230631"></a></p>
+<p> <img src="/2018/12/03/浅谈跨域/kuayu7.png" alt=""></p>
 <p>这个时候，document.domain就可以派上用场了，我们只要把<a href="http://www.example.com/a.html" target="_blank" rel="noopener">http://www.example.com/a.html</a> 和 <a href="http://example.com/b.html" target="_blank" rel="noopener">http://example.com/b.html</a>这两个页面的document.domain都设成相同的域名就可以了。但要注意的是，document.domain的设置是有限制的，我们只能把document.domain设置成自身或更高一级的父域，且主域必须相同。例如：a.b.example.com 中某个文档的document.domain 可以设成a.b.example.com、b.example.com 、example.com中的任意一个，但是不可以设成 c.a.b.example.com,因为这是当前域的子域，也不可以设成baidu.com,因为主域已经不相同了。</p>
 <p>在页面 <a href="http://www.example.com/a.html" target="_blank" rel="noopener">http://www.example.com/a.html</a> 中设置document.domain:</p>
 <p><a href="https://images0.cnblogs.com/blog/130623/201307/15184531-49f512a730204cab803ce03833e4b554.png" target="_blank" rel="noopener"><img src="https://images0.cnblogs.com/blog/130623/201307/15184532-ad98082ee5044921b1b667f1ec2b822b.png" alt="QQ截图20130613230631"></a></p>
