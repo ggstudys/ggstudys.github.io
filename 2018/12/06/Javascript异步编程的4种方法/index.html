@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="markdown," />
+  <meta name="keywords" content="异步," />
 
 
 
@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="简介Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra">
-<meta name="keywords" content="markdown">
+<meta name="description" content="引言你可能知道，Javascript语言的执行环境是”单线程”（single thread）。 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。  这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Ja">
+<meta name="keywords" content="异步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown简明版使用指南">
-<meta property="og:url" content="http://yoursite.com/2018/07/19/Markdown简明版使用指南/index.html">
+<meta property="og:title" content="Javascript异步编程的4种方法">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/Javascript异步编程的4种方法/index.html">
 <meta property="og:site_name" content="小日的博客">
-<meta property="og:description" content="简介Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra">
+<meta property="og:description" content="引言你可能知道，Javascript语言的执行环境是”单线程”（single thread）。 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。  这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Ja">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/07/19/Markdown简明版使用指南/">
-<meta property="og:image" content="http://yoursite.com/2018/07/19/Markdown简明版使用指南/">
-<meta property="og:image" content="http://yoursite.com/2018/07/19/Markdown简明版使用指南/图片地址">
-<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-563079.jpg">
-<meta property="og:updated_time" content="2018-07-19T10:00:42.254Z">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201212/bg2012122101.jpg">
+<meta property="og:updated_time" content="2018-12-06T07:13:34.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown简明版使用指南">
-<meta name="twitter:description" content="简介Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra">
-<meta name="twitter:image" content="http://yoursite.com/2018/07/19/Markdown简明版使用指南/">
+<meta name="twitter:title" content="Javascript异步编程的4种方法">
+<meta name="twitter:description" content="引言你可能知道，Javascript语言的执行环境是”单线程”（single thread）。 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。  这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Ja">
+<meta name="twitter:image" content="http://www.ruanyifeng.com/blogimg/asset/201212/bg2012122101.jpg">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/19/Markdown简明版使用指南/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/06/Javascript异步编程的4种方法/"/>
 
 
 
 
 
-  <title>Markdown简明版使用指南 | 小日的博客</title>
+  <title>Javascript异步编程的4种方法 | 小日的博客</title>
   
 
 
@@ -268,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Markdown简明版使用指南/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/Javascript异步编程的4种方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XiaoRI">
@@ -285,7 +282,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Markdown简明版使用指南</h2>
+          <h2 class="post-title" itemprop="name headline">Javascript异步编程的4种方法</h2>
         
 
         <div class="post-meta">
@@ -297,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T12:53:53+08:00">
-                2018-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T15:11:11+08:00">
+                2018-12-06
               </time>
             
 
@@ -335,32 +332,107 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br>Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。</p>
-<hr>
-<p>###使用指南</p>
-<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>标题能显示出文章的结构。行首插入1-6个 # ，每增加一个 # 表示更深入层次的内容，对应到标题的深度由 1-6 阶</p>
-<h4 id="文本样式"><a href="#文本样式" class="headerlink" title="文本样式"></a>文本样式</h4><p>（带“<em>”星号的文本样式，在原版Markdown标准中不存在，但在其大部分衍生标准中被添加）<br>链接 :<a href="URL">Title</a><br>加粗 :<strong>Bold</strong><br>斜体字 :</em>Italics<em>
-</em>高亮 :==text==<br>段落 : 段落之间空一行<br>换行符 : 一行结束时输入两个空格<br>列表 :* 添加星号成为一个新的列表项。<br>引用 :&gt; 引用内容<br>内嵌代码 : <code>alert(&#39;Hello World&#39;);</code><br>画水平线 (HR) :——–</p>
-<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>使用Markdown将图像插入文章，你需要在Markdown编辑器输入 <img src="/2018/07/19/Markdown简明版使用指南/" alt=""> 。 这时在预览面板中会自动创建一个图像上传框。你可以从电脑桌面拖放图片(.png, .gif, .jpg)到上传框, 或者点击图片上传框使用标准的图像上传方式。 如果你想通过链接插入网络上已经存在的图片，只要单击图片上传框的左下角的“链接”图标，这时就会呈现图像URL的输入框。想给图片添加一个标题, 你需要做的是将标题文本插图中的方括号，e.g;<img src="/2018/07/19/Markdown简明版使用指南/" alt="This is a title">.</p>
-<p>插入图片有两种方式：行内式和参数式<br>行内式<img src="/2018/07/19/Markdown简明版使用指南/图片地址" alt="图片1"></p>
-<p>参数式[图片2]:(图片地址)<br>用法跟链接的基本一样，唯一的不同就是，图片前面要写一个！（这是必须的），没什么好说的</p>
-<p>####区块引用<br>比如说，你想对某个部分做的内容做一些说明或者引用某某的话等，可以用这个语句</p>
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>你可能知道，Javascript语言的执行环境是”单线程”（single thread）。</p>
+<p>所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201212/bg2012122101.jpg" alt="img"></p>
+<p>这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。</p>
+<p>为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。</p>
+<p>“同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；”异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。</p>
+<p>“异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
+<p>本文总结了”异步模式”编程的4种方法，理解它们可以让你写出结构更合理、性能更出色、维护更方便的Javascript程序。</p>
+<p><strong>一、回调函数</strong></p>
+<p>这是异步编程最基本的方法。</p>
+<p>假定有两个函数f1和f2，后者等待前者的执行结果。</p>
 <blockquote>
-<p>语法 在之前加上“&gt;”</p>
+<p>　　f1();</p>
+<p>　　f2();</p>
 </blockquote>
-<h4 id="代码框"><a href="#代码框" class="headerlink" title="代码框"></a>代码框</h4><p>这个就比较重要了，很多时候都需要展示出一些代码<br><code>alert(&quot;nice ti meet you!&quot;)</code><br>如果代码量比较少，只有单行的话，可以用单反引号包起来</p>
-<p>多行用三个反引号，如果要写注释，可以在反引号后面写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(a,b)&#123;</span><br><span class="line">	return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="华丽的分割线"><a href="#华丽的分割线" class="headerlink" title="华丽的分割线"></a>华丽的分割线</h4><p>分割线可以由* - _（星号，减号，底线）这3个符号的至少3个符号表示，注意至少要3个，且不需要连续，有空格也可以</p>
-<hr>
-<h4 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h4><p>只需要在文字前后加上两个~~</p>
+<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
 <blockquote>
-<p><a href="www.baidu.com">使用链接</a>就是这么简单</p>
+<p>　　function f1(callback){</p>
+<p>　　　　setTimeout(function () {</p>
+<p>　　　　　　// f1的任务代码</p>
+<p>　　　　　　callback();</p>
+<p>　　　　}, 1000);</p>
+<p>　　}</p>
 </blockquote>
-<hr>
-<p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-563079.jpg" alt="图片也很简单"></p>
+<p>执行代码就变成下面这样：</p>
 <blockquote>
-<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//撤销申购</span><br><span class="line">$$(&quot;.clickbutton .waitfirstTrial&quot;).click(function()&#123;</span><br><span class="line">	console.log(&quot;当前id&quot;,location.href.split(&quot;=&quot;)[1]);</span><br><span class="line">	var orderId=location.href.split(&quot;=&quot;)[1];</span><br><span class="line">	Server.revokeApplypurchase(&#123;orderId:orderId&#125;,function(data)&#123;</span><br><span class="line">		console.log(111111);</span><br><span class="line">	&#125;);</span><br><span class="line">	// Server.getShopcarNum(&#123; farmId: SYKTools.cookie(Server.currentFarmId) &#125;,</span><br><span class="line">	// 	function (data) &#123;console.log(data)&#125;</span><br><span class="line">	// )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>　　f1(f2);</p>
 </blockquote>
+<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+<p>回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度<a href="http://en.wikipedia.org/wiki/Coupling_(computer_programming" target="_blank" rel="noopener">耦合</a>)（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。</p>
+<p><strong>二、事件监听</strong></p>
+<p>另一种思路是采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
+<p>还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的<a href="http://api.jquery.com/on/" target="_blank" rel="noopener">写法</a>）。</p>
+<blockquote>
+<p>　　f1.on(‘done’, f2);</p>
+</blockquote>
+<p>上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：</p>
+<blockquote>
+<p>　　function f1(){</p>
+<p>　　　　setTimeout(function () {</p>
+<p>　　　　　　// f1的任务代码</p>
+<p>　　　　　　<strong>f1.trigger(‘done’);</strong></p>
+<p>　　　　}, 1000);</p>
+<p>　　}</p>
+</blockquote>
+<p>f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。</p>
+<p>这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以<a href="http://en.wikipedia.org/wiki/Decoupling" target="_blank" rel="noopener">“去耦合”</a>（Decoupling），有利于实现<a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="noopener">模块化</a>。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。</p>
+<p><strong>三、发布/订阅</strong></p>
+<p>上一节的”事件”，完全可以理解成”信号”。</p>
+<p>我们假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做<a href="http://en.wikipedia.org/wiki/Publish-subscribe_pattern" target="_blank" rel="noopener">“发布/订阅模式”</a>（publish-subscribe pattern），又称<a href="http://en.wikipedia.org/wiki/Observer_pattern" target="_blank" rel="noopener">“观察者模式”</a>（observer pattern）。</p>
+<p>这个模式有多种<a href="http://msdn.microsoft.com/en-us/magazine/hh201955.aspx" target="_blank" rel="noopener">实现</a>，下面采用的是Ben Alman的<a href="https://gist.github.com/661855" target="_blank" rel="noopener">Tiny Pub/Sub</a>，这是jQuery的一个插件。</p>
+<p>首先，f2向”信号中心”jQuery订阅”done”信号。</p>
+<blockquote>
+<p>　　jQuery.subscribe(“done”, f2);</p>
+</blockquote>
+<p>然后，f1进行如下改写：</p>
+<blockquote>
+<p>　　function f1(){</p>
+<p>　　　　setTimeout(function () {</p>
+<p>　　　　　　// f1的任务代码</p>
+<p>　　　　　　<strong>jQuery.publish(“done”);</strong></p>
+<p>　　　　}, 1000);</p>
+<p>　　}</p>
+</blockquote>
+<p>jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。</p>
+<p>此外，f2完成执行后，也可以取消订阅（unsubscribe）。</p>
+<blockquote>
+<p>　　jQuery.unsubscribe(“done”, f2);</p>
+</blockquote>
+<p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
+<p><strong>四、Promises对象</strong></p>
+<p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供<a href="http://wiki.commonjs.org/wiki/Promises/A" target="_blank" rel="noopener">统一接口</a>。</p>
+<p>简单说，它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：</p>
+<blockquote>
+<p>　　f1().then(f2);</p>
+</blockquote>
+<p>f1要进行如下改写（这里使用的是jQuery的<a href="http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html" target="_blank" rel="noopener">实现</a>）：</p>
+<blockquote>
+<p>　　function f1(){</p>
+<p>　　　　var dfd = $.Deferred();</p>
+<p>　　　　setTimeout(function () {</p>
+<p>　　　　　　// f1的任务代码</p>
+<p>　　　　　　dfd.resolve();</p>
+<p>　　　　}, 500);</p>
+<p>　　　　<strong>return dfd.promise;</strong></p>
+<p>　　}</p>
+</blockquote>
+<p>这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="noopener">配套方法</a>，可以实现许多强大的功能。</p>
+<p>比如，指定多个回调函数：</p>
+<blockquote>
+<p>　　f1().then(f2).then(f3);</p>
+</blockquote>
+<p>再比如，指定发生错误时的回调函数：</p>
+<blockquote>
+<p>　　f1().then(f2).fail(f3);</p>
+</blockquote>
+<p>而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</p>
+<p><strong>五、参考链接</strong></p>
+<p>　　* <a href="http://sporto.github.com/blog/2012/12/09/callbacks-listeners-promises/" target="_blank" rel="noopener">Asynchronous JS: Callbacks, Listeners, Control Flow Libs and Promises</a></p>
+<p>（完）</p>
+<p>注：本文转载自阮大神日志（<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html）" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html）</a></p>
 
       
     </div>
@@ -407,7 +479,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/markdown/" rel="tag"># markdown</a>
+            <a href="/tags/异步/" rel="tag"># 异步</a>
           
         </div>
       
@@ -420,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/12/04/尾调用优化/" rel="next" title="尾调用优化">
+                <i class="fa fa-chevron-left"></i> 尾调用优化
               </a>
             
           </div>
@@ -430,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/20/Markdown中文版编辑器Tyora/" rel="prev" title="Markdown中文版编辑器Tyora">
-                Markdown中文版编辑器Tyora <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/06/Generator-函数的含义与用法/" rel="prev" title="Generator 函数的含义与用法">
+                Generator 函数的含义与用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标题"><span class="nav-number">1.1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本样式"><span class="nav-number">1.2.</span> <span class="nav-text">文本样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片"><span class="nav-number">1.3.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码框"><span class="nav-number">1.4.</span> <span class="nav-text">代码框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#华丽的分割线"><span class="nav-number">1.5.</span> <span class="nav-text">华丽的分割线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除线"><span class="nav-number">1.6.</span> <span class="nav-text">删除线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码部分"><span class="nav-number"></span> <span class="nav-text">代码部分</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li></ol></div>
             
 
           </div>
